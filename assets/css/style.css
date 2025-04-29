@@ -128,28 +128,28 @@ nav ul span {
     margin-top: calc(8vh + 2em);
 }
 
-.landing-search {
+.search {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
 
-.landing .landing-search-type {
+.landing .search-type {
     display: flex;
     border-radius: 20px;
-    background-color: #00000017;
+    background-color: #ffffff4e;
     padding: 2px;
     z-index: 1;
     width: fit-content;
 }
 
-.landing .landing-search-type button {
+.landing .search-type button {
     background-color: transparent;
     color: white;
     font-weight: bold;
     font-size: 14px;
     border: 0;
-    padding: 0.7em 2.1em;
+    padding: 0.6em 1.5em;
     z-index: 1;
     transition: 250ms ease;
     cursor: pointer;
@@ -157,42 +157,56 @@ nav ul span {
     backdrop-filter: blur(2px);
 }
 
-.landing .landing-search-type button:focus {
+.landing .search-type button:focus {
     background-color: white;
     color: #09b1be;
     outline: none;
 }
 
-.landing-search-searcher {
+.search-searcher {
     z-index: 1;
     padding: 1em;
     background-color: white;
     border-radius: 20px;
     width: 60rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
-.landing-search-from-to {
+.search-searcher-row {
+    height: fit-content;
     display: flex;
-
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.landing-search-select {
+.search-from-to {
     display: flex;
-    border-radius: 15px;
+    height: 100%;
+    align-items: center;
+}
+
+.search-select {
+    display: flex;
+    border-radius: 12px;
     padding: 0.3em 0.8em;
     background-color: #fafafa;
     align-items: center;
     cursor: pointer;
+    height: 100%;
+    gap: 0.5em;
 }
 
-.landing-search-from-to .change {
-    width: fit-content;
+.search-from-to .changeBtn {
     border-radius: 50%;
+    height: 85%;
     background-color: #09b1be;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0.6em;
+    padding: 0 0.5em;
     color: white;
     border: 0;
     cursor: pointer;
@@ -202,25 +216,78 @@ nav ul span {
     transition: 200ms ease;
 }
 
-.change:hover {
-    background-color: #0ac2cf;
-}
-
-.landing-search-select i {
+.search-select i {
     color: #3b3b3b;
+    font-size: 1.1rem;
 }
 
-.landing-search-select span p:first-child {
+.search-select span p:first-child {
     color: #09b1be;
     font-size: 14px;
     font-weight: bold;
 }
 
-.landing-search-select span p:last-child {
+.search-select span p:last-child {
+    color: #3b3b3b;
+    font-weight: 500;
+}
+
+.search-select span p.unselected {
     color: #8b8b8b;
     font-weight: 500;
 }
 
-.landing-search-select:hover {
+.search-select:hover {
     background-color: #e6e6e6;
+}
+
+.searchBtn {
+    border-radius: 50px;
+    background-color: #09b1be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+    padding: 0 1em;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.05rem;
+    z-index: 2;
+    transition: 200ms ease;
+    height: 100%;
+}
+
+.searchBtn i {
+    line-height: 90%;
+}
+
+.searchBtn p {
+    font-weight: 500;
+}
+
+.changeBtn:hover, .searchBtn:hover {
+    background-color: #0ac2cf;
+}
+
+.search-others {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.othersBtn {
+    border-radius: 50px;
+    border: 1px solid #3b3b3b;
+    color: #3b3b3b;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+.othersBtn:hover {
+    background-color: #00000017;
 }
