@@ -40,15 +40,23 @@
             </div>
             <div class="landing-search-searcher">
                 <div class="landing-search-from-to">
-                <select name="origin" id="">
-                    <option value="">De dónde sales</option>
-                </select>
-                <button class="change">
-                    <i class="fa-solid fa-repeat"></i>
-                </button>
-                <select name="destination" id="">
-
-                </select>
+                    <span class="landing-search-select">
+                        <span>
+                            <p>Origen</p>
+                            <p>¿De dónde sales?</p>
+                        </span>
+                        <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
+                    </span>
+                    <button class="change">
+                        <i class="hgi hgi-stroke hgi-repeat"></i>
+                    </button>
+                    <span class="landing-search-select">
+                    <span>
+                        <p>Destino</p>
+                        <p>¿A dónde vas?</p>
+                        </span>
+                        <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
+                    </span>
                 </div>
             </div>
         </div>
