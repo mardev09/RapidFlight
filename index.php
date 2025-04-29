@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CabReserves | Billetes de vuelos y descuentos</title>
+    <title>RapidFlight | Billetes de vuelos y descuentos</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
@@ -46,7 +46,7 @@
         <section class="landing">
             <div class="bg-gradient"></div>
             <div style="display: flex; flex-direction: column; gap: 1em; align-items: center">
-                <h1>Bienvenido a CabReserves: Tu portal de billetes de vuelo</h1>
+                <h1>Bienvenido a RapidFlight: Tu portal de billetes de vuelo</h1>
                 <div class="search">
                     <div class="search-type">
                         <button autofocus>Solo ida</button>
@@ -126,10 +126,48 @@
                 </div>
             </div>
             <div class="pop-dests">
-                <h2>Destinos principales para viajar en ferry</h2>
+                <h2>Destinos populares para viajar en ferry</h2>
+                <div class="pop-dests-carousel">
+                    <div class="carousel-dest">
+                        <div class="bg-gradient-carousel"></div>
+                        <div class="carousel-header">
+                            <p>Descuentos exclusivos</p>
+                            <p>Málaga</p>
+                        </div>
+            
+                        <span class="carousel-buy">
+                            <button>Desde 62,99 €</button>
+                            por persona
+                        </span>
+                    </div>
+                    <div class="carousel-dest">
+                        <div class="bg-gradient-carousel"></div>
+                        <div class="carousel-header">
+                            <p>Descuentos exclusivos</p>
+                            <p>Madrid</p>
+                        </div>
+            
+                        <span class="carousel-buy">
+                            <button>Desde 62,99 €</button>
+                            por persona
+                        </span>
+                    </div>
+                    <div class="carousel-dest">
+                        <div class="bg-gradient-carousel"></div>
+                        <div class="carousel-header">
+                            <p>Descuentos exclusivos</p>
+                            <p>Barcelona</p>
+                        </div>
+            
+                        <span class="carousel-buy">
+                            <button>Desde 62,99 €</button>
+                            por persona
+                        </span>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="airlines-caroussel">
+        <section class="airlines-carousel">
             <div class="airlines">
                 <img src="assets/img/airlines/iberia.png" alt="">
                 <img src="assets/img/airlines/vueling.png" alt="">
@@ -169,6 +207,9 @@
     <footer>
 
     </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/carousel.js"></script>    
 </body>
 
 </html>

@@ -49,7 +49,7 @@ nav a {
 }
 
 nav a img {
-    width: 10em;
+    width: 8em;
     display: flex;
     align-items: center;
     pointer-events: none;
@@ -299,10 +299,92 @@ nav ul span {
 .pop-dests {
     z-index: 1;
     color: white;
-    width: 65%;
+    width: 70%;
+    height: 100%;
 }
 
-.airlines-caroussel {
+.pop-dests h2 {
+    font-weight: bold;
+}
+
+.pop-dests .pop-dests-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100% - 30px);
+    width: 100%;
+    padding: 1em 0;
+    gap: 1.5em;
+}
+
+.pop-dests-carousel .carousel-dest {
+    height: 100%;
+    background-color: rgb(43, 43, 43);
+    border-radius: 20px;
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("../img/popular-destinations/madrid.jpg");
+    background-size: cover;
+    background-color: center center;
+    position: relative;
+    overflow: hidden;
+    padding: 1.1em;
+    cursor: pointer;
+}
+
+.bg-gradient-carousel {
+    background: #000000;
+    background: linear-gradient(140deg, rgba(0, 0, 0, 0.383) 0%, rgba(0, 0, 0, 0.326) 50%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
+
+.carousel-dest:hover .bg-gradient-carousel {
+    background: linear-gradient(140deg, rgba(0, 0, 0, 0.383) 0%, rgba(0, 0, 0, 0.236) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.carousel-dest .carousel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.carousel-dest div p:last-child {
+    font-size: 1.4rem;
+}
+
+.carousel-buy {
+    font-weight: bold;
+    z-index: 1;
+}
+
+.carousel-dest .carousel-buy button {
+    background-color: white;
+    color: #09b1be;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 0;
+    padding: 0.6em 1em;
+    z-index: 1;
+    transition: 250ms ease;
+    cursor: pointer;
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
+    outline: none;
+}
+
+.carousel-dest .carousel-buy button:hover {
+    background-color: #e9e9e9;
+}
+
+.airlines-carousel {
     display: flex;
     flex-wrap: nowrap;
     white-space: nowrap;
@@ -318,10 +400,6 @@ nav ul span {
     height: 100%;
     animation: 20s airlinesLoop linear;
     animation-iteration-count: infinite;
-}
-
-.airlines-caroussel:hover .airlines {
-    animation-play-state: paused;
 }
 
 .airlines img {
