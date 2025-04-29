@@ -32,7 +32,26 @@
     <main>
         <section class="landing">
         <div class="bg-gradient"></div>
-        
+        <h1>Bienvenido a CabReserves: Tu portal de billetes de vuelo</h1>
+        <div class="landing-search">
+            <div class="landing-search-type">
+                <button autofocus>Solo ida</button>
+                <button>Ida y vuelta</button>
+            </div>
+            <div class="landing-search-searcher">
+                <div class="landing-search-from-to">
+                <select name="origin" id="">
+                    <option value="">De dónde sales</option>
+                </select>
+                <button class="change">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+                <select name="destination" id="">
+
+                </select>
+                </div>
+            </div>
+        </div>
 
         </section>
     </main>
