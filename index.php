@@ -45,6 +45,13 @@
     <main>
         <section class="landing">
             <div class="bg-gradient"></div>
+            <!-- <div id="clouds">
+                <div class="cloud x1"></div>
+                <div class="cloud x2"></div>
+                <div class="cloud x3"></div>
+                <div class="cloud x4"></div>
+                <div class="cloud x5"></div>
+            </div> -->
             <div style="display: flex; flex-direction: column; gap: 1em; align-items: center">
                 <h1>Bienvenido a RapidFlight: Tu portal de billetes de vuelo</h1>
                 <div class="search">
@@ -201,6 +208,75 @@
                 <img src="assets/img/airlines/delta.png" alt="">
                 <img src="assets/img/airlines/american.png" alt="">
                 <img src="assets/img/airlines/southwest.png" alt="">
+            </div>
+        </section>
+        <section class="why-us">
+            <div class="why-us-head">
+                <h1>¿Por qué viajar en avión con RapidFlight?</h1>
+                <h3>Servicios</h3>
+            </div>
+            
+            <div class="why-us-boxes">
+                <span class="why-us-box">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <div class="why-us-box-text">
+                        <h3>Aviones</h3>
+                        <p>
+                            RapidFlight cuenta con +800 rutas y +300 aeropuertos en todo el mundo. 
+                        </p>
+                    </div>
+                </span>
+                <span class="why-us-box">
+                    <i class="fa-solid fa-users"></i>
+                    <div class="why-us-box-text">
+                        <h3>Clientes</h3>
+                        <p>
+                            Más de 2.500 clientes confían y utilizan los servicios de Kikoto. 
+                        </p>
+                    </div>
+                </span>
+                <span class="why-us-box">
+                    <i class="fa-solid fa-ticket"></i>
+                    <div class="why-us-box-text">
+                        <h3>Reservas</h3>
+                        <p>
+                            Sumamos más de 20.000 reservas de rutas y promociones al año. 
+                        </p>
+                    </div>
+                </span>
+                <span class="why-us-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="why-us-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
+            </div>
+        </section>
+        <section class="flights-tracker">
+            <h1>Buscador de vuelos: reserva tu próximo viaje con RapidFlights </h1>
+            <div>
+                <p>
+                    Viajar en avión es una experiencia única por muchas razones. Y es que <span style="font-weight: bold">despegar hacia tu próximo destino</span>, ver el mundo desde las alturas y <span style="font-weight: bold">llegar rápidamente allí donde quieres estar</span>, tiene algo especial. Con <span style="font-weight: bold;">RapidFlight</span>, además, <span style="font-weight: bold">te aseguramos un proceso de compra simple, rápido y al mejor precio</span>.
+                </p>
+                <p>
+                    Podríamos decir que <span style="font-weight: bold">volar es libertad</span>. La libertad de moverte por el mundo, descubrir nuevos lugares, reencontrarte con quienes más quieres o simplemente desconectar. También es la libertad de elegir cómo y cuándo viajar, con la posibilidad de llevar contigo lo que necesites. Y, por supuesto, es la libertad de <span style="font-weight: bold">encontrar el precio del billete que mejor se ajuste a tus necesidades</span>, gracias a nuestro buscador de vuelos: <span style="font-weight: bold;">RapidFlight</span>.
+                </p>
+                <p>
+                    Nuestra <span style="font-weight: bold">plataforma de reserva de vuelos utiliza tecnología avanzada</span> para transformar tus preferencias en las mejores opciones disponibles. Así, a través de nuestro buscador, tendrás acceso a <span style="font-weight: bold">un listado completo con información de todas las aerolíneas</span>, para que puedas elegir el billete que más te convenga.
+                </p>
+                <p>
+                    En solo unos minutos, y mediante un proceso <span style="font-weight: bold">ágil, transparente y fácil de usar</span>, tendrás tus billetes listos. Solo necesitas unos segundos para indicarnos tu <span style="font-weight: bold">origen, destino, fechas y quién va a volar</span>. Nuestro sistema rastrea en tiempo real los sitios de las principales aerolíneas y agencias para mostrarte <span style="font-weight: bold">los mejores precios disponibles</span> para tu viaje.
+                </p>
+                <p>
+                    De forma <span style="font-weight: bold">clara y sin sorpresas</span>, podrás comparar opciones y seleccionar la más adecuada para ti, conociendo siempre el <span style="font-weight: bold">precio final, sin costes ocultos</span>. Todo esto, <span style="font-weight: bold">sin necesidad de salir de nuestra plataforma</span> ni visitar páginas poco fiables. En definitiva, un buscador diseñado para que <span style="font-weight: bold">reservar tu vuelo sea algo cómodo, intuitivo y al alcance de tu presupuesto</span>.
+                </p>
+                <p>
+                    Entonces, ¿te animas a buscar ya tus billetes de avión con <span style="font-weight: bold;">RapidFlight</span>?
+                </p>
+
             </div>
         </section>
     </main>
