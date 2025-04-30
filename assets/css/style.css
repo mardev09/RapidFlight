@@ -33,6 +33,7 @@ nav {
     transform: translateX(-50%);
     background-color: #fffffff5;
     z-index: 100;
+    backdrop-filter: blur(2px);
 }
 
 nav ul {
@@ -543,7 +544,7 @@ nav ul span {
     width: 70%;   
 }
 
-.why-us h1, .flights-tracker h1 {
+.why-us h1, .flights-tracker h1, .buy-flight-tickets h1 {
     font-weight: bold;
     color: #313131;
 }
@@ -593,7 +594,7 @@ nav ul span {
     font-size: 1rem;
 }
 
-.flights-tracker {
+.flights-tracker, .buy-flight-tickets {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -602,19 +603,73 @@ nav ul span {
     padding: 1em 0;
 }
 
-.flights-tracker h1, .flights-tracker div {
+.flights-tracker h1, .flights-tracker div, .buy-flight-tickets h1, .buy-flight-p {
     width: 70%;
 }
 
-.flights-tracker div {
+.flights-tracker div, .buy-flight-p {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.flights-tracker div p {
+.flights-tracker div p, .buy-flight-p p {
     width: 100%;
     color: #3b3b3b;
     font-weight: 500;
     font-size: 1rem;
+}
+
+.buy-flight-boxes {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    padding: 1em 0;
+}
+
+.buy-flight-box {
+    border: 1px solid #87878774;
+    border-radius: 20px;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: calc(25% - 1.5em);
+}
+
+.buy-flight-box i {
+    color: #09b1be;
+    font-size: 2.2rem;
+    line-height: 90%;
+}
+
+.buy-flight-box-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.buy-flight-box h3 {
+    font-weight: bold;
+    color: #5b5b5b;
+    font-size: 1.3rem;
+}
+
+.buy-flight-box p {
+    color: #8b8b8b;
+    font-size: 1rem;
+}
+
+footer {
+    width: 100%;
+    padding: 1em 4em;
+    background-color: #e6e6e6;
+    display: flex;
+    justify-content: center;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #313131;
 }

@@ -256,7 +256,7 @@
             </div>
         </section>
         <section class="flights-tracker">
-            <h1>Buscador de vuelos: reserva tu próximo viaje con RapidFlights </h1>
+            <h1>Buscador de vuelos: reserva tu próximo viaje con RapidFlight </h1>
             <div>
                 <p>
                     Viajar en avión es una experiencia única por muchas razones. Y es que <span style="font-weight: bold">despegar hacia tu próximo destino</span>, ver el mundo desde las alturas y <span style="font-weight: bold">llegar rápidamente allí donde quieres estar</span>, tiene algo especial. Con <span style="font-weight: bold;">RapidFlight</span>, además, <span style="font-weight: bold">te aseguramos un proceso de compra simple, rápido y al mejor precio</span>.
@@ -276,12 +276,104 @@
                 <p>
                     Entonces, ¿te animas a buscar ya tus billetes de avión con <span style="font-weight: bold;">RapidFlight</span>?
                 </p>
+            </div>
+        </section>
+        <section class="buy-flight-tickets">
+            <h1>Compra tus billetes de ferry con Kikoto</h1>
+            <div class="buy-flight-p">
+                <p>
+                    Si estás pensando en comprar tus billetes de avión, has llegado al lugar adecuado. <span style="font-weight: bold;">RapidFlight es la plataforma que te ahorra tiempo y dinero</span> a la hora de reservar tus vuelos.
+                </p>
 
+                <p>
+                    Para despegar hacia tu próximo destino y disfrutar de una experiencia única desde el aire, <span style="font-weight: bold;">compra tus billetes de avión con nosotros</span>. En RapidFlight <span style="font-weight: bold;">hacemos realidad tu viaje sin afectar tu presupuesto</span>, ofreciéndote siempre <span style="font-weight: bold;">las mejores tarifas disponibles</span>. Utiliza nuestro buscador y consigue tus billetes de forma <span style="font-weight: bold;">rápida, sencilla y transparente</span>.
+                </p>
+
+                <p>
+                    Además, te ofrecemos un proceso de compra <span style="font-weight: bold;">cómodo, claro y sin sorpresas</span>. ¿Y cómo lo hacemos posible? Estas son solo algunas de las <span style="font-weight: bold;">ventajas que ponemos a tu disposición</span>:
+                </p>
+            </div>
+            <div class="buy-flight-boxes">
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <div class="why-us-box-text">
+                        <h3>Aviones</h3>
+                        <p>
+                            RapidFlight cuenta con +800 rutas y +300 aeropuertos en todo el mundo. 
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-users"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Clientes</h3>
+                        <p>
+                            Más de 2.500 clientes confían y utilizan los servicios de Kikoto. 
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-ticket"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Reservas</h3>
+                        <p>
+                            Sumamos más de 20.000 reservas de rutas y promociones al año. 
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
+                <span class="buy-flight-box">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <div class="buy-flight-box-text">
+                        <h3>Ahorros</h3>
+                        <p>
+                            Hemos comparado más de 70.000 precios diferentes.  
+                        </p>
+                    </div>
+                </span>
             </div>
         </section>
     </main>
     <footer>
-
+        <p>
+            &copy; 2025 RapidFlight. Todos los derechos reservados. 
+        </p>
+        
     </footer>
 
     <script src="assets/js/main.js"></script>
