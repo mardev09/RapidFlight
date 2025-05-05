@@ -17,13 +17,13 @@
             <img src="./assets/img/logo.png" alt="">
         </a>
         <ul class="">
-            <a href="">
+            <a href="404.php">
                 <li>Rutas y aeropuertos</li>
             </a>
-            <a href="">
+            <a href="login.php">
                 <li>Reservas</li>
             </a>
-            <a href="">
+            <a href="contact.php">
                 <li>Contacto</li>
             </a>
             <span></span>
@@ -297,84 +297,71 @@
                 <span class="buy-flight-box">
                     <i class="fa-solid fa-plane-departure"></i>
                     <div class="why-us-box-text">
-                        <h3>Aviones</h3>
                         <p>
-                            RapidFlight cuenta con +800 rutas y +300 aeropuertos en todo el mundo. 
+                            Rutas de aviones por todo el mundo. 
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
                     <i class="fa-solid fa-users"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Clientes</h3>
                         <p>
-                            Más de 2.500 clientes confían y utilizan los servicios de Kikoto. 
+                            Resultados de búsqueda en segundos, gracias a la última tecnología analizamos todas las webs de las principales de las aerolíneas, para mostrarte las mejores opciones disponibles.
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
                     <i class="fa-solid fa-ticket"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Reservas</h3>
                         <p>
-                            Sumamos más de 20.000 reservas de rutas y promociones al año. 
+                            El precio es siempre la mejor tarifa disponible en todas las aerolíneas que realizan los vuelos, sin sorpresas ni costes ocultos.
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
                     <i class="fa-solid fa-piggy-bank"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Ahorros</h3>
                         <p>
-                            Hemos comparado más de 70.000 precios diferentes.  
+                            Proceso intuitivo sin complicaciones. Busca, selecciona tu mejor opción y finaliza la compra.  
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
-                    <i class="fa-solid fa-piggy-bank"></i>
+                    <i class="fa-solid fa-circle-info"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Ahorros</h3>
                         <p>
-                            Hemos comparado más de 70.000 precios diferentes.  
+                            Información detallada, simple y transparente: con un resumen de las mejores opciones.
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
-                    <i class="fa-solid fa-piggy-bank"></i>
+                    <i class="fa-solid fa-shield-check"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Ahorros</h3>
                         <p>
-                            Hemos comparado más de 70.000 precios diferentes.  
+                            Compra segura de tus billetes de vuelo desde la misma plataforma, sin tener que salir a webs externas.
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
-                    <i class="fa-solid fa-piggy-bank"></i>
+                    <i class="fa-solid fa-mobile"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Ahorros</h3>
                         <p>
-                            Hemos comparado más de 70.000 precios diferentes.  
+                            Modo Voy con prisa: activa tu ubicación y obtén las ofertas disponibles cerca de ti. Acelera el proceso de reserva.  
                         </p>
                     </div>
                 </span>
                 <span class="buy-flight-box">
-                    <i class="fa-solid fa-piggy-bank"></i>
+                    <i class="fa-solid fa-headset"></i>
                     <div class="buy-flight-box-text">
-                        <h3>Ahorros</h3>
                         <p>
-                            Hemos comparado más de 70.000 precios diferentes.  
+                            Atención al cliente responde tus dudas durante la planificación y hasta tu llegada.
                         </p>
                     </div>
                 </span>
             </div>
         </section>
     </main>
-    <footer>
-        <p>
-            &copy; 2025 RapidFlight. Todos los derechos reservados. 
-        </p>
-        
-    </footer>
+    <?php include("includes/footer.inc.php") ?>
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/carousel.js"></script>    
