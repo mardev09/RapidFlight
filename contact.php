@@ -24,7 +24,7 @@
                 <li>Reservas</li>
             </a>
             <a href="contact.php">
-                <li>Contacto</li>
+                <li class="active">Contacto</li>
             </a>
             <span></span>
             <a class="nav-reserve-now" href="">
@@ -63,7 +63,7 @@
     <?php include("includes/footer.inc.php") ?>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/carousel.js"></script>    
+    <script src="assets/js/ajax.js"></script>    
 </body>
 
 </html>

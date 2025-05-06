@@ -137,7 +137,7 @@
     <?php include("includes/footer.inc.php") ?>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/carousel.js"></script>    
+    <script src="assets/js/ajax.js"></script>    
 </body>
 
 </html>

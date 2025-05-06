@@ -109,16 +109,8 @@
 
                         <div class="search-others">
                             <button class="othersBtn">
-                                <i class="fa-solid fa-car"></i>
-                                Vehículo
-                            </button>
-                            <button class="othersBtn">
                                 <i class="fa-solid fa-paw"></i>
                                 Mascotas
-                            </button>
-                            <button class="othersBtn">
-                                <i class="fa-solid fa-users"></i>
-                                Familia numerosa
                             </button>
                             <button class="othersBtn">
                                 <i class="fa-solid fa-medal"></i>
@@ -231,7 +223,7 @@
                     <div class="why-us-box-text">
                         <h3>Clientes</h3>
                         <p>
-                            Más de 2.500 clientes confían y utilizan los servicios de Kikoto. 
+                            Más de 2.500 clientes confían y utilizan los servicios de RapidFlight. 
                         </p>
                     </div>
                 </span>
@@ -279,7 +271,7 @@
             </div>
         </section>
         <section class="buy-flight-tickets">
-            <h1>Compra tus billetes de ferry con Kikoto</h1>
+            <h1>Compra tus billetes de ferry con RapidFlight</h1>
             <div class="buy-flight-p">
                 <p>
                     Si estás pensando en comprar tus billetes de avión, has llegado al lugar adecuado. <span style="font-weight: bold;">RapidFlight es la plataforma que te ahorra tiempo y dinero</span> a la hora de reservar tus vuelos.
@@ -364,7 +356,7 @@
     <?php include("includes/footer.inc.php") ?>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/carousel.js"></script>    
+    <script type="module" src="assets/js/ajax.js"></script>    
 </body>
 
 </html>
