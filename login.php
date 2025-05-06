@@ -26,9 +26,14 @@
                     <input type="text" placeholder="Correo electrónico">
                     <input type="password" placeholder="Contraseña">
                     <div class="forgot-passwd">
-                        <a href=""></a>
+                        <a href="./reset-passwd">He olvidado mi contraseña</a>
+                        <i class="fa-light fa-lock"></i>
                     </div>
-                    <button class="login-btn">Iniciar sesión</button>
+                    <button class="searchBtn" style="padding: 0.8em 1em; border-radius: 10px">Iniciar sesión</button>
+                    <div class="no-account">
+                        <p>¿No tienes cuenta?</p>
+                        <a href="">Regístrate</a>
+                    </div>
                 </form>
             </div>
         </div>

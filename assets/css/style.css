@@ -2,6 +2,8 @@
 
 * {
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: "Quicksand";
@@ -783,6 +785,11 @@ footer p {
     max-width: 100%;
     outline: none;
     font-size: 1rem;
+    transition: 200ms ease;
+}
+
+.login-form form input:hover {
+    border-color: #0999a3;
 }
 
 .login-img {
@@ -792,4 +799,32 @@ footer p {
     background-position: center center;
     background-size: cover;
     border-radius: 50px 0 0 50px;
+}
+
+.forgot-passwd {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.forgot-passwd a {
+    text-decoration: none;
+    color: #313131;
+}
+
+.forgot-passwd a:hover {
+    text-decoration: underline;
+}
+
+.no-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.no-account a {
+    text-decoration: none;
+    color: #0999a3;
 }
