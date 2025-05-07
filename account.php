@@ -74,7 +74,25 @@
             </div>
         </section>
         <section class="account-main">
-
+            <h1>Información personal</h1>
+            <div class="personal-info">
+                <div class="personal-info-box">
+                    <p>Nombre legal</p>
+                    <a href="">Editar</a>
+                </div>
+                <div class="personal-info-box">
+                    <p>Correo electrónico</p>
+                    <a href="">Editar</a>
+                </div>
+                <div class="personal-info-box">
+                    <p>Fecha de nacimiento</p>
+                    <a href="">Editar</a>
+                </div>
+                <div class="personal-info-box">
+                    <p>Número de teléfono</p>
+                    <a href="">Editar</a>
+                </div>
+            </div>
         </section>
     </main>
     <?php include("includes/footer.inc.php") ?>

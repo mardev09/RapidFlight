@@ -739,6 +739,10 @@ footer p {
     margin-top: calc(8vh + 4em);
     width: 35%;
     height: calc(100% - (8vh + 4em));
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    color: #313131;
 }
 
 .account-navbar {
@@ -844,4 +848,21 @@ footer p {
 
 .account-navbar-links a:last-child {
     border-bottom: none;
+}
+
+.personal-info-box {
+    padding: 2em 0;
+    border-bottom: 1px solid #00000021;
+    display: flex;
+    justify-content: space-between;
+    color: #313131;
+}
+
+.personal-info-box p {
+    font-weight: bold;
+}
+
+.personal-info-box a {
+    color: #313131;
+    font-size: 0.85rem;
 }
