@@ -3,13 +3,13 @@
         <img src="public/img/logo.png" alt="">
     </a>
     <ul class="">
-        <a href="404.php">
+        <a href="/routes">
             <li>Rutas y aeropuertos</li>
         </a>
-        <a href="login.php">
+        <a href="reserve">
             <li>Reservas</li>
         </a>
-        <a href="contact.php">
+        <a href="contact">
             <li>Contacto</li>
         </a>
         <span></span>

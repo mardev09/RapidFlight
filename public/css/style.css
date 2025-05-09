@@ -52,10 +52,12 @@ nav a {
 }
 
 nav a img {
-    width: 5em;
+    width: 7em;
     display: flex;
     align-items: center;
     pointer-events: none;
+    position: relative;
+    top: 2px;
 }
 
 nav ul a {
