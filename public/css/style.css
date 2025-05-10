@@ -58,6 +58,8 @@ nav a img {
     pointer-events: none;
     position: relative;
     top: 2px;
+    pointer-events: none;
+    user-select: none;
 }
 
 nav ul a {
@@ -145,9 +147,10 @@ nav ul span {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    position: relative;
 }
 
-.landing .search-type {
+.search .search-type {
     display: flex;
     border-radius: 20px;
     background-color: #ffffff4e;
@@ -156,7 +159,7 @@ nav ul span {
     width: fit-content;
 }
 
-.landing .search-type button {
+.search .search-type button {
     background-color: transparent;
     color: white;
     font-weight: bold;
@@ -170,7 +173,7 @@ nav ul span {
     backdrop-filter: blur(2px);
 }
 
-.landing .search-type button:focus {
+.search .search-type button.active {
     background-color: white;
     color: #09b1be;
     outline: none;
@@ -178,7 +181,7 @@ nav ul span {
 
 .search-searcher {
     z-index: 1;
-    padding: 1em;
+    padding: 0.8em;
     background-color: white;
     border-radius: 20px;
     width: 65rem;
@@ -211,6 +214,13 @@ nav ul span {
     cursor: pointer;
     height: 100%;
     gap: 1.4em;
+    text-align: left;
+    border: none;
+}
+
+.search-from-to .search-select {
+    min-width: 189px;
+    justify-content: space-between;
 }
 
 .search-from-to .changeBtn {
@@ -230,6 +240,28 @@ nav ul span {
     transition: 200ms ease;
 }
 
+.search-select span input[type="date"] {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #313131;
+    outline: none;
+}
+
+.search-select span input::-webkit-datetime-edit-day-field:focus,
+.search-select span input::-webkit-datetime-edit-month-field:focus,
+ .search-select span input::-webkit-datetime-edit-year-field:focus {
+    color: white;
+    background-color: #0999a3;
+    outline: none;
+}
+
+.search-select span input[type="date"]::-webkit-inner-spin-button,
+.search-select span input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
 .search-select i {
     color: #3b3b3b;
     font-size: 1.1rem;
@@ -244,6 +276,7 @@ nav ul span {
 .search-select span p:last-child {
     color: #3b3b3b;
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .search-select span p.unselected {
@@ -253,6 +286,18 @@ nav ul span {
 
 .search-select:hover {
     background-color: #e6e6e6;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.disabled * {
+    color: #cdcdcd !important;
+}
+
+.disabled:hover {
+    background-color: #fafafa;
 }
 
 .searchBtn {
@@ -307,7 +352,7 @@ nav ul span {
 }
 
 .pop-dests {
-    z-index: 1;
+    z-index: 0;
     color: white;
     width: 70%;
     height: 100%;
@@ -619,19 +664,29 @@ footer p {
     font-weight: bold;
 }
 
-.contact form input[type="text"], .contact form input[type="number"] {
+.contact form input, .selectCity input {
     border: 1px solid #5b5b5b3e;
     padding: 1em;
     color: #3b3b3b;
     border-radius: 10px;
     min-width: 100%;
     max-width: 100%;
+    transition: border 200ms ease;
+}
+
+.contact form input:focus, .contact form textarea:focus, .selectCity input:focus {    
+    border: 1px solid #0999a3b9;
     outline: none;
+}
+
+.contact form input[type="text"], .contact form input[type="number"], .contact form textarea {
+    font-size: 0.9rem;
 }
 
 .contact form textarea {
     max-width: 100%;
     min-width: 100%;
+    color: #3b3b3b;
     max-height: 10em;
     border: 1px solid #5b5b5b3e;
     border-radius: 10px;
@@ -867,4 +922,133 @@ footer p {
 .personal-info-box a {
     color: #313131;
     font-size: 0.85rem;
+}
+
+.searcherBtnsContainer {
+    position: relative;
+}
+
+.submenu {
+    margin-top: 0.5em;
+}
+
+/* Search windows */
+.selectCity {
+    z-index: 5;
+    background-color: white;
+    border-radius: 15px;
+    color: #313131;
+    display: none;
+    flex-direction: column;
+    width: 380px;
+    height: 20rem;
+    overflow: hidden;
+    position: absolute;
+    box-shadow: 0px 0px 5px #00000015;
+}
+
+.submenu.active {
+    display: flex;
+}
+
+.selectCity div:first-child {
+    padding: 0.8em;
+}
+
+.selectCity input {
+    padding: 0.6em;
+    font-size: 1rem;
+    background-color: #fcfcfc;
+}
+
+.selectCity .cities {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.selectCity .cities button {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    color: #313131;
+    cursor: pointer;
+    padding: 0.3em 0.8em;
+    transition: 100ms ease;
+}
+
+.selectCity .cities button p:last-child {
+    font-weight: normal;
+    color: #878787;
+}
+
+.selectCity .cities button:focus, .selectCity .cities button:focus p {
+    color: #0999a3;
+}
+
+.selectCity .cities button:focus:hover {
+    background-color: transparent;
+}
+
+.selectCity .cities button:hover {
+    background-color: #0999a3;
+}
+
+.selectCity .cities button:hover, .selectCity .cities button:hover p {
+    color: white;
+}
+
+.selectCity .cities button:focus, .selectCity .cities button:focus p {
+    color: #0999a3;
+}
+
+/* Passenger */
+.passenger {
+    background-color: white;
+    padding: 1em;
+    display: none;
+    border-radius: 10px;
+    z-index: 1;
+    align-items: center;
+    gap: 2em;
+    color: #313131;
+    position: absolute;
+    box-shadow: 0px 0px 5px #00000015;
+}
+
+.passenger p {
+    font-weight: bold;
+}
+
+.passenger .counter {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.passenger .counter button {
+    background-color: none;
+    border: 1px solid #313131;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em 0.6em;
+    font-size: 18px;
+    background-color: transparent;
+    transition: 100ms ease;
+}
+
+.passenger .counter button:hover {
+    color: white;
+    background-color: #313131;
 }

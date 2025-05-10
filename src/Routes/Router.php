@@ -31,6 +31,6 @@ class Router
             return $controller->$methodName();
         }
 
-        header("Location: /inicio");
+        header("Location: /not-found");
     }
 }

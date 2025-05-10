@@ -15,78 +15,10 @@ include(TEMPLATE_DIR . "nav.inc.php");
         </div> -->
         <div style="display: flex; flex-direction: column; gap: 1em; align-items: center">
             <h1>Bienvenido a RapidFlight: Tu portal de billetes de vuelo</h1>
-            <div class="search">
-                <div class="search-type">
-                    <button autofocus>Solo ida</button>
-                    <button>Ida y vuelta</button>
-                </div>
-                <div class="search-searcher">
-                    <div class="search-searcher-row">
-                        <div class="search-from-to">
-                            <span class="search-select">
-                                <span>
-                                    <p>Origen</p>
-                                    <p class="unselected">¿De dónde sales?</p>
-                                </span>
-                                <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
-                            </span>
-                            <button class="changeBtn">
-                                <i class="hgi hgi-stroke hgi-repeat"></i>
-                            </button>
-                            <span class="search-select">
-                                <span>
-                                    <p>Destino</p>
-                                    <p class="unselected">¿A dónde vas?</p>
-                                </span>
-                                <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
-                            </span>
-                        </div>
-                        <span class="search-select">
-                            <span>
-                                <p>Ida</p>
-                                <p>29/4/2025</p>
-                            </span>
-                            <i class="hgi hgi-stroke hgi-calendar-03"></i>
-                        </span>
-                        <span class="search-select">
-                            <span>
-                                <p>Vuelta</p>
-                                <p>01/5/2025</p>
-                            </span>
-                            <i class="hgi hgi-stroke hgi-calendar-03"></i>
-                        </span>
-                        <span class="search-select">
-                            <span>
-                                <p>Pasajeros</p>
-                                <p>1 pasajero</p>
-                            </span>
-                            <i class="fa-solid fa-person"></i>
-                        </span>
-                        <button class="searchBtn">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <p>Buscar</p>
-                        </button>
-                    </div>
-
-                    <div class="search-others">
-                        <button class="othersBtn">
-                            <i class="fa-solid fa-paw"></i>
-                            Mascotas
-                        </button>
-                        <button class="othersBtn">
-                            <i class="fa-solid fa-medal"></i>
-                            Bonificación
-                        </button>
-                        <button class="othersBtn">
-                            <i class="fa-solid fa-gift"></i>
-                            Descuentos
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <?php include(TEMPLATE_DIR . "search.inc.php") ?>
         </div>
         <div class="pop-dests">
-            <h2>Destinos populares para viajar en ferry</h2>
+            <h2>Destinos populares para viajar en avión</h2>
             <div class="pop-dests-carousel">
                 <div class="carousel-dest">
                     <div class="bg-gradient-carousel"></div>
@@ -232,7 +164,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
         </div>
     </section>
     <section class="buy-flight-tickets">
-        <h1>Compra tus billetes de ferry con RapidFlight</h1>
+        <h1>Compra tus billetes de avión con RapidFlight</h1>
         <div class="buy-flight-p">
             <p>
                 Si estás pensando en comprar tus billetes de avión, has llegado al lugar adecuado. <span style="font-weight: bold;">RapidFlight es la plataforma que te ahorra tiempo y dinero</span> a la hora de reservar tus vuelos.

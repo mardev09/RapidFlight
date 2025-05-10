@@ -27,4 +27,8 @@ class PagesController extends Controller
             $this->view('ContactView', []);
         // }
     }
+
+    public function notFound() {
+        $this->view('NotFoundView', []);
+    }
 }

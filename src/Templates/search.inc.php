@@ -1,0 +1,135 @@
+<?php 
+    $minDate = date('Y-m-d');
+?>
+
+<form class="search" method="POST">
+    <div class="search-type">
+        <button type="button" class="one-trip">Solo ida</button>
+        <button type="button" class="round-trip active">Ida y vuelta</button>
+    </div>
+    <div class="search-searcher">
+        <div class="search-searcher-row">
+            <div class="search-from-to">
+                <span class="searcherBtnsContainer">
+                    <button type="button" class="search-select" data-window="selectCity">
+                        <span>
+                            <p>Origen</p>
+                            <p class="unselected">¿De dónde sales?</p>
+                        </span>
+                        <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
+                    </button>
+                </span>
+                <button type="button" class="changeBtn">
+                    <i class="hgi hgi-stroke hgi-repeat"></i>
+                </button>
+                <span class="searcherBtnsContainer">
+                    <button type="button" class="search-select" data-window="selectCity">
+                        <span>
+                            <p>Destino</p>
+                            <p class="unselected">¿A dónde vas?</p>
+                        </span>
+                        <i class="hgi hgi-stroke hgi-sharp hgi-arrow-down-01"></i>
+                    </button>
+                </span>
+            </div>
+            <button type="button" class="search-select datePicker" id="ida" data-window="calendarModal">
+                <span>
+                    <p>Ida</p>
+                    <input type="date" min="<?php echo $minDate ?>"" >
+                </span>
+                <i class="hgi hgi-stroke hgi-calendar-03"></i>
+            </button>
+            <button type="button" class="search-select datePicker" id="vuelta" data-window="calendarModal">
+                <span>
+                    <p>Vuelta</p>
+                    <input type="date" min="<?php echo $minDate ?>">
+                </span>
+                <i class="hgi hgi-stroke hgi-calendar-03"></i>
+            </button>
+            <span class="searcherBtnsContainer">
+                <button type="button" class="search-select" data-window="passenger">
+                    <span>
+                        <p>Pasajeros</p>
+                        <p>1 pasajero/s</p>
+                    </span>
+                    <i class="fa-solid fa-person"></i>
+                </button>
+            </span>
+            <button type="submit" class="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <p>Buscar</p>
+            </button>
+        </div>
+
+        <!-- <div class="search-others">
+            <button type="button" class="othersBtn" disabled>
+                <i class="fa-solid fa-paw"></i>
+                Mascotas
+            </button>
+            <button type="button" class="othersBtn" disabled>
+                <i class="fa-solid fa-medal"></i>
+                Bonificación
+            </button>
+            <button type="button" class="othersBtn" disabled>
+                <i class="fa-solid fa-gift"></i>
+                Descuentos
+            </button>
+        </div> -->
+    </div>
+</form>
+
+<template id="selectCity">
+    <div class="selectCity submenu">
+        <div>
+            <input type="text">
+        </div>
+        <div class="cities">
+            <button type="button">
+                <p>Málaga</p>
+                <p>Andalucía, España</p>
+            </button>
+            <button type="button">
+                <p>Sevilla</p>
+                <p>Andalucía, España</p>
+            </button>
+            <button type="button">
+                <p>Córdoba</p>
+                <p>Andalucía, España</p>
+            </button>
+            <button type="button">
+                <p>Almería</p>
+                <p>Andalucía, España</p>
+            </button>
+            <button type="button">
+                <p>Madrid</p>
+                <p>Madrid, España</p>
+            </button>
+            <button type="button">
+                <p>Barcelona</p>
+                <p>Barcelona, España</p>
+            </button>
+        </div>
+    </div>
+</template>
+
+<template id="calendarModal">
+    <div>
+        <p>1</p>
+    </div>
+</template>
+
+<template id="passenger">
+    <div class="passenger submenu">
+        <p>Pasajero/s</p>
+
+        <div class="counter">
+            <button type="button" class="counterButton" id="counterMore">
+                <i class="fa-light fa-plus"></i>
+            </button>
+            <p>1</p>
+            <button type="button" class="counterButton" id="counterLess">
+                <i class="fa-light fa-minus"></i>
+            </button>
+        </div>
+    </div>
+</template>

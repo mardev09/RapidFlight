@@ -1,15 +1,15 @@
 <nav class="">
-    <a href="./">
+    <a href="inicio">
         <img src="public/img/logo.png" alt="">
     </a>
     <ul class="">
         <a href="/routes">
             <li>Rutas y aeropuertos</li>
         </a>
-        <a href="reserve">
+        <a href="reservas">
             <li>Reservas</li>
         </a>
-        <a href="contact">
+        <a href="contacto">
             <li>Contacto</li>
         </a>
         <span></span>
