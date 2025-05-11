@@ -36,17 +36,17 @@ searchButton.addEventListener('click', e => {
 })
 
 function getFlights(cities, fechaIda, fechaVuelta) {
-    const url = `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights?fromId=${cities['origin']}.AIRPORT&toId=${cities['destination']}.AIRPORT&departDate=${fechaIda}${fechaVuelta ? "&returnDate=" + fechaVuelta : ""}&stops=none&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=EUR`;
-    console.log(url)
-    const options = {
-    	method: 'GET',
-    	headers: {
-    		'x-rapidapi-key': 'e71f37d53amsh535400404897a4ep123ec5jsnd82727a76054',
-    		'x-rapidapi-host': 'booking-com15.p.rapidapi.com'
-    	}
-    };
+    // const url = `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights?fromId=${cities['origin']}.AIRPORT&toId=${cities['destination']}.AIRPORT&departDate=${fechaIda}${fechaVuelta ? "&returnDate=" + fechaVuelta : ""}&stops=none&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=EUR`;
+    // console.log(url)
+    // const options = {
+    // 	method: 'GET',
+    // 	headers: {
+    // 		'x-rapidapi-key': 'e71f37d53amsh535400404897a4ep123ec5jsnd82727a76054',
+    // 		'x-rapidapi-host': 'booking-com15.p.rapidapi.com'
+    // 	}
+    // };
 
-    fetch(url, options)
+    fetch('/test.json')
     .then(res => {return res.json()})
     .then(data => {
         // const vuelos = data.data.flightOffers?.map((oferta) => {
@@ -90,7 +90,52 @@ function getFlights(cities, fechaIda, fechaVuelta) {
         //     };
         // });
 
-        console.log(data)
+        // Para el json
+        const vuelos = data.data.flightOffers.map((oferta) => {
+        const primerSegmento = oferta.segments[0];
+        const primerLeg = primerSegmento.legs[0];
+        const carrier = primerLeg.carriersData[0];
+
+        const aerolinea = carrier.name;
+        const numeroVuelo = `${primerLeg.flightInfo.carrierInfo.marketingCarrier}${primerLeg.flightInfo.flightNumber}`;
+        const origen = primerLeg.departureAirport.cityName;
+        const destino = primerLeg.arrivalAirport.cityName;
+        const fechaSalida = primerSegmento.departureTime.split('T')[0];
+        const horaSalida = primerSegmento.departureTime.split('T')[1];
+        const fechaLlegada = primerSegmento.arrivalTime.split('T')[0];
+        const horaLlegada = primerSegmento.arrivalTime.split('T')[1];
+
+        const precio = `${oferta.priceBreakdown.total.units}.${oferta.priceBreakdown.total.nanos
+            .toString()
+            .padStart(9, '0')} ${oferta.priceBreakdown.total.currencyCode}`;
+
+        const duracionSegundos = primerSegmento.totalTime;
+        const duracionHoras = Math.floor(duracionSegundos / 3600);
+        const duracionMinutos = Math.floor((duracionSegundos % 3600) / 60);
+        const duracion = `${duracionHoras}h ${duracionMinutos}min`;
+
+        const equipajeManoIncluido = primerSegmento.travellerCabinLuggage?.length > 0;
+        const escalas = oferta.segments.length - 1;
+
+        return {
+            aerolinea,
+            numeroVuelo,
+            origen,
+            destino,
+            fechaSalida,
+            horaSalida,
+            fechaLlegada,
+            horaLlegada,
+            precio,
+            datosImportantes: {
+            duracion,
+            equipajeManoIncluido,
+            escalas
+            }
+        };
+        });
+
+        console.log(vuelos)
     })
     .catch(err => {
         console.log(err)
