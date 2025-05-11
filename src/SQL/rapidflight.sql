@@ -19,39 +19,93 @@
 CREATE DATABASE IF NOT EXISTS `rapidflight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
 USE `rapidflight`;
 
+-- Volcando estructura para tabla rapidflight.ciudad
+CREATE TABLE IF NOT EXISTS `ciudad` (
+  `iata` char(3) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `aeropuerto` varchar(150) NOT NULL,
+  `provincia` varchar(100) NOT NULL,
+  `pais` varchar(50) NOT NULL,
+  PRIMARY KEY (`iata`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- Volcando datos para la tabla rapidflight.ciudad: ~45 rows (aproximadamente)
+INSERT INTO `ciudad` (`iata`, `ciudad`, `aeropuerto`, `provincia`, `pais`) VALUES
+	('ABC', 'Albacete', 'Albacete-Los Llanos Airport', 'Albacete', 'España'),
+	('ACE', 'Lanzarote', 'Lanzarote Airport', 'Las Palmas', 'España'),
+	('AGP', 'Málaga', 'Málaga-Costa del Sol Airport', 'Málaga', 'España'),
+	('ALC', 'Alicante', 'Alicante-Elche Miguel Hernández Airport', 'Alicante', 'España'),
+	('BCN', 'Barcelona', 'Josep Tarradellas Barcelona-El Prat Airport', 'Barcelona', 'España'),
+	('BIO', 'Bilbao', 'Bilbao Airport', 'Bizkaia', 'España'),
+	('BJZ', 'Badajoz', 'Badajoz Airport', 'Badajoz', 'España'),
+	('CDT', 'Castellón de la Plana', 'Castellón-Costa Azahar Airport', 'Castellón', 'España'),
+	('EAS', 'San Sebastián', 'San Sebastián Airport', 'Gipuzkoa', 'España'),
+	('ECV', 'Cuatro Vientos', 'Cuatro Vientos Airport', 'Madrid', 'España'),
+	('FUE', 'Fuerteventura', 'Fuerteventura Airport', 'Las Palmas', 'España'),
+	('GMZ', 'La Gomera', 'La Gomera Airport', 'Santa Cruz de Tenerife', 'España'),
+	('GRO', 'Girona', 'Girona-Costa Brava Airport', 'Girona', 'España'),
+	('GRX', 'Granada', 'Federico García Lorca Granada Airport', 'Granada', 'España'),
+	('HSK', 'Huesca', 'Huesca-Pirineos Airport', 'Huesca', 'España'),
+	('IBZ', 'Ibiza', 'Ibiza Airport', 'Illes Balears', 'España'),
+	('ILD', 'Lleida', 'Lleida-Alguaire Airport', 'Lleida', 'España'),
+	('LCG', 'A Coruña', 'A Coruña Airport', 'A Coruña', 'España'),
+	('LEI', 'Almería', 'Almería Airport', 'Almería', 'España'),
+	('LEN', 'León', 'León Airport', 'León', 'España'),
+	('LPA', 'Gran Canaria', 'Gran Canaria Airport', 'Las Palmas', 'España'),
+	('MAD', 'Madrid', 'Adolfo Suárez Madrid–Barajas Airport', 'Madrid', 'España'),
+	('MAH', 'Menorca', 'Menorca Airport', 'Illes Balears', 'España'),
+	('MLN', 'Melilla', 'Melilla Airport', 'Melilla', 'España'),
+	('ODB', 'Córdoba', 'Córdoba Airport', 'Córdoba', 'España'),
+	('OVD', 'Asturias', 'Asturias Airport', 'Asturias', 'España'),
+	('PMI', 'Palma de Mallorca', 'Palma de Mallorca Airport', 'Illes Balears', 'España'),
+	('PNA', 'Pamplona', 'Pamplona Airport', 'Navarra', 'España'),
+	('REU', 'Reus', 'Reus Airport', 'Tarragona', 'España'),
+	('RGS', 'Burgos', 'Burgos Airport', 'Burgos', 'España'),
+	('RMU', 'Murcia', 'Región de Murcia International Airport', 'Murcia', 'España'),
+	('SCQ', 'Santiago de Compostela', 'Santiago de Compostela Airport', 'A Coruña', 'España'),
+	('SDR', 'Santander', 'Santander Airport', 'Cantabria', 'España'),
+	('SLM', 'Salamanca', 'Salamanca Airport', 'Salamanca', 'España'),
+	('SPC', 'La Palma', 'La Palma Airport', 'Santa Cruz de Tenerife', 'España'),
+	('SVQ', 'Sevilla', 'Sevilla Airport', 'Sevilla', 'España'),
+	('TFN', 'Tenerife (Norte)', 'Tenerife North Airport', 'Santa Cruz de Tenerife', 'España'),
+	('TFS', 'Tenerife (Sur)', 'Tenerife South Airport', 'Santa Cruz de Tenerife', 'España'),
+	('VDE', 'El Hierro', 'El Hierro Airport', 'Santa Cruz de Tenerife', 'España'),
+	('VGO', 'Vigo', 'Vigo Airport', 'Pontevedra', 'España'),
+	('VIT', 'Vitoria-Gasteiz', 'Vitoria Airport', 'Álava', 'España'),
+	('VLC', 'Valencia', 'Valencia Airport', 'Valencia', 'España'),
+	('VLL', 'Valladolid', 'Valladolid Airport', 'Valladolid', 'España'),
+	('XRY', 'Jerez de la Frontera', 'Jerez Airport', 'Cádiz', 'España'),
+	('ZAZ', 'Zaragoza', 'Zaragoza Airport', 'Zaragoza', 'España');
+
 -- Volcando estructura para tabla rapidflight.reserva
 CREATE TABLE IF NOT EXISTS `reserva` (
   `idReserva` int(11) NOT NULL AUTO_INCREMENT,
-  `origen` varchar(50) NOT NULL DEFAULT '',
-  `destino` varchar(50) NOT NULL DEFAULT '',
-  `fechaHoraVuelo` datetime NOT NULL DEFAULT curdate(),
-  PRIMARY KEY (`idReserva`)
+  `usuario` varchar(100) NOT NULL,
+  `origen` char(3) NOT NULL,
+  `destino` char(3) NOT NULL,
+  `fechaHoraSalida` datetime NOT NULL,
+  `fechaHoraLlegada` datetime NOT NULL,
+  PRIMARY KEY (`idReserva`),
+  KEY `usuario` (`usuario`),
+  KEY `origen` (`origen`),
+  KEY `destino` (`destino`),
+  CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`email`),
+  CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`origen`) REFERENCES `ciudad` (`iata`),
+  CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`destino`) REFERENCES `ciudad` (`iata`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- Volcando datos para la tabla rapidflight.reserva: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla rapidflight.reservausuario
-CREATE TABLE IF NOT EXISTS `reservausuario` (
-  `usuario` varchar(50) NOT NULL DEFAULT '',
-  `reserva` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`usuario`,`reserva`),
-  KEY `reserva_fk` (`reserva`),
-  CONSTRAINT `reserva_fk` FOREIGN KEY (`reserva`) REFERENCES `reserva` (`idReserva`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `usuario_fk` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
--- Volcando datos para la tabla rapidflight.reservausuario: ~0 rows (aproximadamente)
-
 -- Volcando estructura para tabla rapidflight.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `usuario` varchar(50) NOT NULL DEFAULT '',
-  `password` char(60) NOT NULL DEFAULT '',
   `email` varchar(100) NOT NULL DEFAULT '',
-  PRIMARY KEY (`usuario`),
-  UNIQUE KEY `email` (`email`)
+  `password` char(60) NOT NULL DEFAULT '',
+  PRIMARY KEY (`email`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
--- Volcando datos para la tabla rapidflight.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla rapidflight.usuario: ~1 rows (aproximadamente)
+INSERT INTO `usuario` (`email`, `password`) VALUES
+	('omar@gmail.com', '$2y$10$VrGy60NWCnZUd0hzXsnpCu90Ul89ub1pOt52QeFD14kyAWtoPGP0O');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
