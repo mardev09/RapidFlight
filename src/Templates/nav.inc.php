@@ -20,11 +20,24 @@
             </li>
         </a>
         <span></span>
-        <a href="">
-            <li>
-                <i class="hgi hgi-stroke hgi-menu-01"></i>
-                <i class="hgi hgi-stroke hgi-user-circle-02"></i>
-            </li>
-        </a>
+        <div class="navAccountWrapper">
+            <a id="showAccountSubmenu">
+                <li>
+                    <i class="hgi hgi-stroke hgi-menu-01"></i>
+                    <i class="hgi hgi-stroke hgi-user-circle-02"></i>
+                </li>
+            </a>
+            <div class="navAccountBox">
+                <?php if (isset($_SESSION['email'])) { ?>
+                    <a href="/account">Cuenta</a>
+                <?php } else { ?>
+                    <a href="/login">Iniciar sesión</a>
+                <?php } ?>
+                <?php if (isset($_SESSION['email'])) { ?>
+                    <span></span>
+                    <a href="/logout">Cerrar sesión</a>
+                <?php } ?>
+            </div>
+        </div>
     </ul>
 </nav>

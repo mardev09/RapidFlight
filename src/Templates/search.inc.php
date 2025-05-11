@@ -80,9 +80,9 @@
 
 <template id="selectCity">
     <div class="selectCity submenu">
-        <div>
+        <!-- <div>
             <input type="text">
-        </div>
+        </div> -->
         <div class="cities">
             <button type="button">
                 <p>Málaga</p>

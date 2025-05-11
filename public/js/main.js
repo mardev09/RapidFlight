@@ -9,6 +9,15 @@ let isVuelta = true;
 
 // Cuando cargue el contenido del DOM
 document.addEventListener("DOMContentLoaded", (e) => {
+    // Imagenes del carrousel
+    const carousel = document.querySelectorAll('.pop-dests-carousel .carousel-dest')
+
+    carousel.forEach(box => {
+        const city = box.querySelector('.carousel-header p:last-child').textContent
+
+        box.style.backgroundImage = `url('public/img/popular-destinations/${city}.jpg')`
+    })
+
     // Abrir cajas para cada button
     addElementWindow(container, buttons);
 
@@ -43,6 +52,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // Comprobar que al aparacer un submenu que se cierre cuando se haga click fuera de este
     window.addEventListener('click', e => {
         const submenu = document.querySelector('.submenu.active')
+        const navBox = document.querySelector('.navAccountBox')
+        const showAccountSubmenu = document.querySelector('#showAccountSubmenu')
+
+        if (showAccountSubmenu.contains(e.target)) {
+            if (navBox.classList.contains('active')) {
+                navBox.classList.remove('active')
+            } else {
+                navBox.classList.add('active')
+            }
+        } else {
+            if (navBox.classList.contains('active')) {
+                if (!navBox.contains(e.target)) {
+                    navBox.classList.remove('active')
+                }
+            }
+        }
 
         if (submenu) {
             if (!submenu.contains(e.target)) {
@@ -63,14 +88,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const vuelta = document.querySelector('#vuelta span input')
         const ida = document.querySelector('#ida span input')
 
-        ida.addEventListener('change', e => {
+        ida?.addEventListener('change', e => {
             vuelta.setAttribute('min', ida.value)
         })
     }
 
     // Boton para cambiar de entre destino y origen y viceversa
-    const changeBtn = document.querySelector('.changeBtn')
-    changeBtn.addEventListener('click', e => {
+    const changeBtn = document?.querySelector('.changeBtn')
+        changeBtn?.addEventListener('click', e => {
         const origen = changeBtn.previousElementSibling.querySelector('.search-select span p:last-child')
         const destino = changeBtn.nextElementSibling.querySelector('.search-select span p:last-child')
 
@@ -82,13 +107,18 @@ document.addEventListener("DOMContentLoaded", (e) => {
     })
 
     // Poner origen si se le da click a destino
-    const origen = changeBtn.previousElementSibling.querySelector('.search-select span p:last-child')
-    const destino = changeBtn.nextElementSibling
+    const origen = changeBtn?.previousElementSibling.querySelector('.search-select span p:last-child')
+    const destino = changeBtn?.nextElementSibling
 
-    destino.addEventListener('click', e => {
+    destino?.addEventListener('click', e => {
         if (origen.classList.contains('unselected')) {
             origen.textContent = 'Málaga' // Esto no es así pendiente de terminar
             origen.classList.remove('unselected')
         }
+    })
+
+    // Toggle del boton del nav para el submenu de cuenta y cerrar sesion
+    document.querySelector('#showAccountSubmenu')?.addEventListener('click', e => {
+
     })
 })

@@ -6,7 +6,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
 <main class="contact">
     <div class="bg-gradient"></div>
 
-    <form action="" method="POST">
+    <form action="/inicio" method="GET">
         <h1>Contáctanos</h1>
         <input type="text" placeholder="Nombre" required>
         <input type="text" placeholder="Correo electrónico" required>

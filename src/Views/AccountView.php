@@ -7,7 +7,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
     <section class="account-navbar">
         <div class="email-points-box">
             <i class="fa-solid fa-user usr-icon"></i>
-            <p>omaralianmohamed0099@gmail.com</p>
+            <p><?php echo $_SESSION['email'] ?></p>
             <div class="account-points">
                 <div class="points-box">
                     <p>0 puntos</p>
@@ -34,19 +34,39 @@ include(TEMPLATE_DIR . "nav.inc.php");
         <h1>Información personal</h1>
         <div class="personal-info">
             <div class="personal-info-box">
-                <p>Nombre legal</p>
+                <p>
+                    Nombre legal
+                    <span>
+                        No proporcionado
+                    </span>
+                </p>
                 <a href="">Editar</a>
             </div>
             <div class="personal-info-box">
-                <p>Correo electrónico</p>
+                <p>
+                    Correo electrónico
+                    <span>
+                        <?php echo $_SESSION['email'] ?>
+                    </span>
+                </p>
                 <a href="">Editar</a>
             </div>
             <div class="personal-info-box">
-                <p>Fecha de nacimiento</p>
+                <p>
+                    Fecha de nacimiento
+                    <span>
+                        No proporcionado
+                    </span>
+                </p>
                 <a href="">Editar</a>
             </div>
             <div class="personal-info-box">
-                <p>Número de teléfono</p>
+                <p>
+                    Número de teléfono
+                    <span>
+                        No proporcionado
+                    </span>
+                </p>
                 <a href="">Editar</a>
             </div>
         </div>
