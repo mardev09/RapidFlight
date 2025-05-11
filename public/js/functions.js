@@ -13,6 +13,16 @@ export const addElementWindow = (containerQuery, buttonsQuery) => {
                     container.appendChild(select);
                     const submenu = document.querySelector('.submenu.active')
 
+                    // Poner en focus el la ciudad que este seleccionada si lo está
+                    if (!submenu.closest('.searcherBtnsContainer').querySelector('.search-select span p:last-child').classList.contains('unselected')) {
+                        const ciudadSeleccionada = submenu.closest('.searcherBtnsContainer').querySelector('.search-select span p:last-child').textContent
+                        submenu.querySelectorAll('.cities button').forEach(button => {
+                            if (ciudadSeleccionada == button.querySelector('p:first-child').textContent) {
+                                button.classList.add('active')
+                            }
+                        })
+                    }
+
                     // Comprobar que al clickear uno de los botones, su valor se asigne al boton principal
                     submenu.querySelectorAll('.cities button').forEach(button => {
                         button.addEventListener('click', e => {

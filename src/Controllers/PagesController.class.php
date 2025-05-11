@@ -11,7 +11,9 @@ class PagesController extends Controller
             session_destroy();
         }
 
-        $this->view('HomeView', []);
+        $reserve = $this->model('Reserve');
+        $cities = $reserve->getCities();
+        $this->view('HomeView', $cities);
     }
 
     public function contact() {

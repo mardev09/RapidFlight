@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     destino?.addEventListener('click', e => {
         if (origen.classList.contains('unselected')) {
-            origen.textContent = 'Málaga' // Esto no es así pendiente de terminar
+            origen.textContent = 'Albacete'
             origen.classList.remove('unselected')
         }
     })

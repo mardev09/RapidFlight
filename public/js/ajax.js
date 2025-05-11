@@ -1,16 +1,98 @@
-const url = 'https://aerodatabox.p.rapidapi.com/flights/airports/icao/LEMD/2025-05-06T13:00/2025-05-06T21:00?withLeg=true&direction=Both&withCancelled=true&withCodeshared=true&withCargo=false&withPrivate=false&withLocation=false';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': 'e71f37d53amsh535400404897a4ep123ec5jsnd82727a76054',
-		'x-rapidapi-host': 'aerodatabox.p.rapidapi.com'
-	}
-};
+const searchButton = document.querySelector('.searchBtn')
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
+searchButton.addEventListener('click', e => {
+    e.preventDefault();
+    let origin;
+    let destination;
+    const fechaIda = document.querySelector('#ida span input').value;
+    const fechaVuelta = document.querySelector('#vuelta span input').value;
+
+    document.querySelectorAll('.search-from-to .search-select').forEach(button => {
+        if (button.querySelector('span p:first-child').textContent == 'Origen') {
+            origin = button.querySelector('span p:last-child').textContent != "¿De dónde sales?" ? button.querySelector('span p:last-child').textContent : ""
+        } else if (button.querySelector('span p:first-child').textContent == 'Destino') {
+            destination = button.querySelector('span p:last-child').textContent != "¿A dónde vas?" ? button.querySelector('span p:last-child').textContent : ""
+        }
+    })
+
+    if (origin && destination && fechaIda) {
+        const cities = {
+            origin: origin,
+            destination: destination
+        }
+
+        fetch("/getIATA", {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(cities),
+        }).then(res => {
+            return res.json()
+        }).then(cities => {
+            getFlights(cities, fechaIda, fechaVuelta)
+        }).catch(err => console.error(err))
+    }
+})
+
+function getFlights(cities, fechaIda, fechaVuelta) {
+    const url = `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights?fromId=${cities['origin']}.AIRPORT&toId=${cities['destination']}.AIRPORT&departDate=${fechaIda}${fechaVuelta ? "&returnDate=" + fechaVuelta : ""}&stops=none&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=EUR`;
+    console.log(url)
+    const options = {
+    	method: 'GET',
+    	headers: {
+    		'x-rapidapi-key': 'e71f37d53amsh535400404897a4ep123ec5jsnd82727a76054',
+    		'x-rapidapi-host': 'booking-com15.p.rapidapi.com'
+    	}
+    };
+
+    fetch(url, options)
+    .then(res => {return res.json()})
+    .then(data => {
+        // const vuelos = data.data.flightOffers?.map((oferta) => {
+        //     const primerSegmento = oferta.segments[0];
+        //     const primerLeg = primerSegmento.legs[0];
+        //     const carrier = primerLeg.carriersData[0];
+
+        //     const aerolinea = carrier.name;
+        //     const numeroVuelo = `${primerLeg.flightInfo.carrierInfo.marketingCarrier}${primerLeg.flightInfo.flightNumber}`;
+        //     const origen = primerLeg.departureAirport.cityName;
+        //     const destino = primerLeg.arrivalAirport.cityName;
+        //     const fechaSalida = primerLeg.departureTime.split('T')[0];
+        //     const horaSalida = primerLeg.departureTime.split('T')[1];
+        //     const fechaLlegada = primerLeg.arrivalTime.split('T')[0];
+        //     const horaLlegada = primerLeg.arrivalTime.split('T')[1];
+        //     const precio = `${oferta.priceBreakdown.total.units}.${oferta.priceBreakdown.total.nanos.toString().padStart(9, '0')} ${oferta.priceBreakdown.total.currencyCode}`;
+
+        //     // Datos importantes
+        //     const duracionSegundos = primerLeg.totalTime;
+        //     const duracionHoras = Math.floor(duracionSegundos / 3600);
+        //     const duracionMinutos = Math.floor((duracionSegundos % 3600) / 60);
+        //     const duracion = `${duracionHoras}h ${duracionMinutos}min`;
+
+        //     const equipajeManoIncluido = primerSegmento.travellerCabinLuggage.length > 0;
+
+        //     return {
+        //         aerolinea,
+        //         numeroVuelo,
+        //         origen,
+        //         destino,
+        //         fechaSalida,
+        //         horaSalida,
+        //         fechaLlegada,
+        //         horaLlegada,
+        //         precio,
+        //         datosImportantes: {
+        //         duracion,
+        //         equipajeManoIncluido,
+        //         escalas: oferta.segments.length - 1
+        //         }
+        //     };
+        // });
+
+        console.log(data)
+    })
+    .catch(err => {
+        console.log(err)
+    });
 }

@@ -2,7 +2,7 @@
     $minDate = date('Y-m-d');
 ?>
 
-<form class="search" method="POST">
+<form class="search" action="/reserve" method="POST">
     <div class="search-type">
         <button type="button" class="one-trip">Solo ida</button>
         <button type="button" class="round-trip active">Ida y vuelta</button>
@@ -35,7 +35,7 @@
             <button type="button" class="search-select datePicker" id="ida" data-window="calendarModal">
                 <span>
                     <p>Ida</p>
-                    <input type="date" min="<?php echo $minDate ?>"" >
+                    <input type="date" min="<?php echo $minDate ?>" >
                 </span>
                 <i class="hgi hgi-stroke hgi-calendar-03"></i>
             </button>
@@ -84,11 +84,13 @@
             <input type="text">
         </div> -->
         <div class="cities">
+            <?php foreach($data as $k => $v) { ?>
             <button type="button">
-                <p>Málaga</p>
-                <p>Andalucía, España</p>
+                <p><?php echo $data[$k]['ciudad'] ?></p>
+                <p><?php echo $data[$k]['provincia'] . ", " . $data[$k]['pais'] ?></p>
             </button>
-            <button type="button">
+            <?php } ?>
+            <!-- <button type="button">
                 <p>Sevilla</p>
                 <p>Andalucía, España</p>
             </button>
@@ -107,7 +109,7 @@
             <button type="button">
                 <p>Barcelona</p>
                 <p>Barcelona, España</p>
-            </button>
+            </button> -->
         </div>
     </div>
 </template>

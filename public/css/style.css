@@ -1041,11 +1041,11 @@ footer p {
     color: #878787;
 }
 
-.selectCity .cities button:focus, .selectCity .cities button:focus p {
+.selectCity .cities button.active, .selectCity .cities button.active p {
     color: #0999a3;
 }
 
-.selectCity .cities button:focus:hover {
+.selectCity .cities button.active:hover {
     background-color: transparent;
 }
 
@@ -1057,7 +1057,7 @@ footer p {
     color: white;
 }
 
-.selectCity .cities button:focus, .selectCity .cities button:focus p {
+.selectCity .cities button.active, .selectCity .cities button.active p {
     color: #0999a3;
 }
 
