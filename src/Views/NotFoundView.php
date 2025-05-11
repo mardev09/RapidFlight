@@ -13,8 +13,8 @@ include(TEMPLATE_DIR . "nav.inc.php");
             <div class="cloud x4"></div>
             <div class="cloud x5"></div>
         </div> -->
-        <div style="display: flex; flex-direction: column; gap: 1em; align-items: center">
-            <h1 style="text-align: center"><span style="font-size: 4rem; font-weight: bold;">404</span> <br> Página no encontrada</h1>
+        <div class="reserveWrapper">
+            <h1 style="text-align: center;"><span style="font-size: 4rem; font-weight: bold;">404</span> <br> Página no encontrada</h1>
             <?php include(TEMPLATE_DIR . "search.inc.php") ?>
         </div>
     </section>

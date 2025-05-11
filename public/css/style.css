@@ -669,10 +669,6 @@ footer p {
     height: 100%;
 }
 
-.not-found-main section div h1 {
-    margin-top: calc(4rem + 4em);
-}
-
 /* Contact page */
 .contact {
     height: 90vh;
@@ -1109,4 +1105,24 @@ footer p {
 .passenger .counter button:hover {
     color: white;
     background-color: #313131;
+}
+
+.reservePage .reserveWrapper, .not-found-main .reserveWrapper {
+    display: flex; 
+    flex-direction: column;
+    gap: 1em; 
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.not-found-main .reserveWrapper h1 {
+    margin-top: 0;
+}
+
+/* Reserve */
+.reserveBox {
+    
 }

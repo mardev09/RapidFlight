@@ -73,4 +73,15 @@ class PagesController extends Controller
         session_destroy();
         header('Location: /inicio');
     }
+
+    public function reserve() {
+        session_start();
+
+        if (!isset($_SESSION['email'])) {
+            session_destroy();
+            header('Location: /inicio');
+        }
+        
+        $this->view('ReserveView', []);
+    }
 }

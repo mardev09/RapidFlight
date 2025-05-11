@@ -13,5 +13,6 @@ $router->add('GET', '/login', 'PagesController@login');
 $router->add('GET', '/register', 'PagesController@register');
 $router->add('POST', '/login-submit', 'UsuarioController@login');
 $router->add('POST', '/register-submit', 'UsuarioController@register');
+$router->add('GET', '/reserve', 'PagesController@reserve');
 
 $router->handler();

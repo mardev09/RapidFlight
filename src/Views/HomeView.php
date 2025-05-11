@@ -28,7 +28,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
                     </div>
         
                     <span class="carousel-buy">
-                        <button>Desde 62,99 €</button>
+                        <button>Desde 22,99 €</button>
                         por persona
                     </span>
                 </div>
@@ -40,7 +40,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
                     </div>
         
                     <span class="carousel-buy">
-                        <button>Desde 62,99 €</button>
+                        <button>Desde 32,99 €</button>
                         por persona
                     </span>
                 </div>
