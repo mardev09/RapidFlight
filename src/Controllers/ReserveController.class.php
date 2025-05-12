@@ -18,4 +18,16 @@ class ReserveController extends Controller
         echo json_encode(['origin' => $iataOrigin['iata'], 'destination' => $iataDestination['iata']]);
         die;
     }
+
+    public function reserveSubmit() {
+        $rawData = file_get_contents("php://input");
+        $data = json_decode($rawData, true);
+        $flight = $_SESSION['vuelos'][$data['id']];
+        $reserve = $this->model("Reserve");
+        $reserve->addReserve($flight);
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($flight['origen']);
+        die;
+    }
 }

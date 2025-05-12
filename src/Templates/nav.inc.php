@@ -6,9 +6,11 @@
         <a href="/routes">
             <li>Rutas y aeropuertos</li>
         </a>
-        <a href="reservas">
-            <li>Mis reservas</li>
-        </a>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <a href="/my-reserves">
+                <li>Mis reservas</li>
+            </a>
+        <?php } ?>
         <a href="contacto">
             <li>Contacto</li>
         </a>

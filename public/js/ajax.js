@@ -1,5 +1,6 @@
 const searchButton = document.querySelector('.searchBtn')
 
+// Búscador
 searchButton?.addEventListener('click', e => {
     e.preventDefault();
     let origin;
@@ -35,6 +36,7 @@ searchButton?.addEventListener('click', e => {
     }
 })
 
+// Fetch a la API aunque de momento es un fetch al JSON sin mandarle ningún parámetro ya que no se puede hacer uson de la API
 function getFlights(cities, fechaIda, fechaVuelta) {
     // const url = `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights?fromId=${cities['origin']}.AIRPORT&toId=${cities['destination']}.AIRPORT&departDate=${fechaIda}${fechaVuelta ? "&returnDate=" + fechaVuelta : ""}&stops=none&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=EUR`;
     // console.log(url)
@@ -157,3 +159,27 @@ function getFlights(cities, fechaIda, fechaVuelta) {
         console.log(err)
     });
 }
+
+// Al realizar una reserva
+const reserveButtons = document?.querySelectorAll('.reserveButton');
+
+reserveButtons.forEach(button => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
+        const idVuelo = button.id;
+
+        fetch('/reserve-submit', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: idVuelo}),
+        }).then(res => {
+            return res.json();
+        }).then(res => {
+            window.location.href = "/my-reserves"
+        }).catch(err => {
+            console.error(err)
+        })
+    })
+})

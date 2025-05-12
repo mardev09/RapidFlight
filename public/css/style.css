@@ -342,7 +342,7 @@ nav ul span {
     background-color: #fafafa;
 }
 
-.searchBtn, .loginButton {
+.searchBtn, .loginButton, .contactBtn {
     border-radius: 50px;
     background-color: #09b1be;
     display: flex;
@@ -359,15 +359,15 @@ nav ul span {
     height: 100%;
 }
 
-.searchBtn i, .loginButton {
+.searchBtn i, .loginButton, .contactBtn {
     line-height: 90%;
 }
 
-.searchBtn p, .loginButton p {
+.searchBtn p, .loginButton p, .contactBtn p {
     font-weight: 500;
 }
 
-.changeBtn:hover, .searchBtn:hover, .loginButton:hover {
+.changeBtn:hover, .searchBtn:hover, .loginButton:hover, .contactBtn:hover {
     background-color: #0ac2cf;
 }
 
@@ -1174,7 +1174,7 @@ footer p {
     background-color: #f5f5f5;
 }
 
-.flightBox {
+.flightBox, .myReserveBox {
     border-radius: 10px;
     background-color: white;
     padding: 1em;
@@ -1187,7 +1187,7 @@ footer p {
     scroll-snap-align: center;
 }
 
-.flightBox h3 {
+.flightBox h3, .myReserveBox h3 {
     color: #0999a3;
     font-weight: bold;
     font-size: 1.2rem;
@@ -1290,4 +1290,35 @@ footer p {
 
 .flightBoxLeftAdditional p i {
     color: #0999a3;
+}
+
+/* My Reserves */
+.myReserveBox {
+    width: 19rem;
+    min-width: 19rem;
+}
+
+.myReserveBoxContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.myReserveBoxContent span {
+    width: 100%;
+    border-top: 1px solid #87878727;
+}
+
+.myReserveBoxContentCity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.myReserveBoxContentCity h3 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #3b3b3b;
 }

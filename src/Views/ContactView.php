@@ -13,7 +13,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
         <input type="number" placeholder="Número de teléfono">
         <textarea placeholder="Mensaje" required></textarea>
 
-        <button class="searchBtn" style="padding: 0.8em 1em">
+        <button class="contactBtn" style="padding: 0.8em 1em">
             <i class="fa-solid fa-envelope"></i>
             <p>Contactar</p>
         </button>

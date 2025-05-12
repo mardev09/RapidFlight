@@ -69,7 +69,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
                                         </h3>
                                     </div>
 
-                                    <button type="button" id="<?php echo $k ?>" class="reserveButton">Reservar</button>
+                                    <button type="submit" id="<?php echo $k ?>" class="reserveButton">Reservar</button>
                                 </div>
                             </div>
                         </div>

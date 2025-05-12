@@ -14,7 +14,8 @@ $router->add('GET', '/register', 'PagesController@register');
 $router->add('POST', '/login-submit', 'UsuarioController@login');
 $router->add('POST', '/register-submit', 'UsuarioController@register');
 $router->add('POST', '/reserve', 'PagesController@reserve');
-$router->add('GET', '/reserve', 'PagesController@reserve');
+$router->add('GET', '/my-reserves', 'PagesController@ownReserves');
 $router->add('POST', '/getIATA', 'ReserveController@getIATA');
+$router->add('POST', '/reserve-submit', 'ReserveController@reserveSubmit');
 
 $router->handler();
