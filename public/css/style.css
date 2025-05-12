@@ -342,7 +342,7 @@ nav ul span {
     background-color: #fafafa;
 }
 
-.searchBtn {
+.searchBtn, .loginButton {
     border-radius: 50px;
     background-color: #09b1be;
     display: flex;
@@ -359,15 +359,15 @@ nav ul span {
     height: 100%;
 }
 
-.searchBtn i {
+.searchBtn i, .loginButton {
     line-height: 90%;
 }
 
-.searchBtn p {
+.searchBtn p, .loginButton p {
     font-weight: 500;
 }
 
-.changeBtn:hover, .searchBtn:hover {
+.changeBtn:hover, .searchBtn:hover, .loginButton:hover {
     background-color: #0ac2cf;
 }
 
@@ -1112,8 +1112,10 @@ footer p {
     flex-direction: column;
     gap: 1em; 
     align-items: center;
+    justify-content: center;
+    height: 100%;
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -1124,5 +1126,168 @@ footer p {
 
 /* Reserve */
 .reserveBox {
-    
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2em;
+}
+
+/* Slideshow */
+.slideshow {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.box-list {
+    width: calc(64rem + 1em);
+    display: flex;
+    gap: 4em;
+    scroll-behavior: smooth;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.box-list::-webkit-scrollbar {
+    display: none;
+}
+
+.next-btn, .prev-btn {
+    width: 48px;
+    height: fit-content;
+    padding: 0.8em;
+    border-radius: 50%;
+    border: 0;
+    background-color: white;
+    color: #0999a3;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+
+.next-btn:hover, .prev-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.flightBox {
+    border-radius: 10px;
+    background-color: white;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    color: #3b3b3b;
+    gap: 1em;
+    border: 1px solid #3b3b3b28;
+    width: 32rem;
+    scroll-snap-align: center;
+}
+
+.flightBox h3 {
+    color: #0999a3;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.fligthBoxData {
+    display: flex;
+    gap: 1em;
+}
+
+.fligthBoxData .separator {
+    border-right: 1px solid #5b5b5b30;
+}
+
+.flightBox .flightBoxLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.flightTime {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+} 
+
+.flightTime span {
+    border-top: 1px solid #5b5b5b30;
+    width: 9rem;
+}
+
+.flightTime p {
+    font-size: 0.9rem;
+}
+
+.flightBoxLeft h3, .flightBoxRight h3 {
+    color: #3b3b3b;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.flightBoxLeftContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5em;
+}
+
+.flightBoxLeftContent h3 p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.flightBoxRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.flightBoxRight div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reserveButton {
+    background-color: #0999a3;
+    color: white;
+    border: 1px solid #06575d21;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+.reserveButton:hover {
+    background-color: #0aaab6;
+}
+
+.flightBoxLeftAdditional {
+    display: flex;
+    gap: 1em;
+}
+
+.flightBoxLeftAdditional p{
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.flightBoxLeftAdditional p:last-child {
+    white-space: nowrap;
+}
+
+.flightBoxLeftAdditional p i {
+    color: #0999a3;
 }

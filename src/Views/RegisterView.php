@@ -15,7 +15,7 @@ include(TEMPLATE_DIR . "head.inc.php");
                 <p>Crear cuenta</p>
                 <input type="text" name="email" placeholder="Correo electrónico">
                 <input type="password" name="password" placeholder="Contraseña">
-                <button class="searchBtn" style="padding: 0.8em 1em; border-radius: 10px">Registrarse</button>
+                <button type="submit" class="loginButton" style="padding: 0.8em 1em; border-radius: 10px">Registrarse</button>
                 <div class="no-account">
                     <p>¿Tienes una cuenta?</p>
                     <a href="/login">Iniciar sesión</a>

@@ -7,7 +7,7 @@
             <li>Rutas y aeropuertos</li>
         </a>
         <a href="reservas">
-            <li>Reservas</li>
+            <li>Mis reservas</li>
         </a>
         <a href="contacto">
             <li>Contacto</li>

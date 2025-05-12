@@ -32,8 +32,10 @@ class PagesController extends Controller
         if (!isset($_SESSION['email'])) {
             session_destroy();
         }
-        
-        $this->view('NotFoundView', []);
+
+        $reserve = $this->model('Reserve');
+        $cities = $reserve->getCities();
+        $this->view('NotFoundView', [$cities]);
     }
 
     public function account() {
@@ -79,11 +81,20 @@ class PagesController extends Controller
     public function reserve() {
         session_start();
 
+        if (!isset($_SESSION['vuelos'])) {
+            $data = json_decode($_POST['vuelos'], true);
+            $_SESSION['vuelos'] = $data;
+        }
+        
+
         if (!isset($_SESSION['email'])) {
             session_destroy();
             header('Location: /inicio');
         }
+
+        $reserve = $this->model('Reserve');
+        $cities = $reserve->getCities();
         
-        $this->view('ReserveView', []);
+        $this->view('ReserveView', $_SESSION['vuelos']);
     }
 }

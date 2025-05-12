@@ -1,6 +1,6 @@
 const searchButton = document.querySelector('.searchBtn')
 
-searchButton.addEventListener('click', e => {
+searchButton?.addEventListener('click', e => {
     e.preventDefault();
     let origin;
     let destination;
@@ -49,6 +49,7 @@ function getFlights(cities, fechaIda, fechaVuelta) {
     fetch('/test.json')
     .then(res => {return res.json()})
     .then(data => {
+        /* API */
         // const vuelos = data.data.flightOffers?.map((oferta) => {
         //     const primerSegmento = oferta.segments[0];
         //     const primerLeg = primerSegmento.legs[0];
@@ -90,7 +91,7 @@ function getFlights(cities, fechaIda, fechaVuelta) {
         //     };
         // });
 
-        // Para el json
+        /* TEST JSON */
         const vuelos = data.data.flightOffers.map((oferta) => {
         const primerSegmento = oferta.segments[0];
         const primerLeg = primerSegmento.legs[0];
@@ -135,7 +136,22 @@ function getFlights(cities, fechaIda, fechaVuelta) {
         };
         });
 
-        console.log(vuelos)
+        // console.log(vuelos)
+        
+        // Creo un formulario ficticio para enviar los datos a /reserve
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/reserve';
+        form.style.display = 'none';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'vuelos';
+        input.value = JSON.stringify(vuelos);
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
     })
     .catch(err => {
         console.log(err)

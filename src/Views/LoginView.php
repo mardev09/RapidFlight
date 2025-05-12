@@ -19,7 +19,7 @@ include(TEMPLATE_DIR . "head.inc.php");
                     <a href="./reset-passwd">He olvidado mi contraseña</a>
                     <i class="fa-light fa-lock"></i>
                 </div> -->
-                <button class="searchBtn" style="padding: 0.8em 1em; border-radius: 10px">Iniciar sesión</button>
+                <button type="submit" class="loginButton" style="padding: 0.8em 1em; border-radius: 10px">Iniciar sesión</button>
                 <div class="no-account">
                     <p>¿No tienes cuenta?</p>
                     <a href="/register">Regístrate</a>
