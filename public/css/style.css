@@ -46,6 +46,10 @@ nav ul {
     height: 100%;
 }
 
+.subnav img {
+    display: none;
+}
+
 nav a {
     width: fit-content;
     height: fit-content;
@@ -113,6 +117,10 @@ nav ul span {
     position: relative;
 }
 
+.hamMenu {
+    display: none;
+}
+
 .navAccountBox {
     display: none;
     flex-direction: column;
@@ -160,8 +168,20 @@ nav ul span {
     position: relative;
 }
 
+.landing-container {
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5em; 
+    align-items: center
+}
+
 .active {
     color: #09b1be;
+}
+
+.exitHam {
+    display: none;
+    cursor: pointer;
 }
 
 .bg-gradient {
@@ -213,7 +233,7 @@ nav ul span {
 
 .search .search-type button.active {
     background-color: white;
-    color: #09b1be;
+    color:#0aaab6;
     outline: none;
 }
 
@@ -420,7 +440,7 @@ nav ul span {
 .pop-dests-carousel .carousel-dest {
     background-color: rgb(43, 43, 43);
     border-radius: 20px;
-    width: 33.33%;
+    width: 30em;
     height: 15rem;
     display: flex;
     flex-direction: column;
@@ -652,11 +672,13 @@ footer {
     height: 10vh;
     justify-content: center;
     align-items: center;
+    z-index: 600;
 }
 
 footer p {
     font-size: 1rem;
     color: #313131;
+    text-align: center;
 }
 
 /* Not found page */
@@ -828,32 +850,35 @@ footer p {
     display: flex;
     justify-content: center;
     gap: 3em;
+    align-items: center;
 }
 
 .account-main {
-    margin-top: calc(8vh + 4em);
     width: 35%;
-    height: calc(100% - (8vh + 4em));
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 1em;
     color: #313131;
+    position: relative;
+    top: 2em;
 }
 
 .account-navbar {
-    margin-top: calc(8vh + 4em);
-    width: 15%;
-    height: calc(100% - (8vh + 4em));
+    min-width: 15%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    position: relative;
+    top: 2em;
 }
 
 .email-points-box {
     background-color: #0999a33c;
     border-radius: 15px;
     height: fit-content;
-    width: 100%;
+    min-width: 100%;
     border: 1px solid #064b5021;
     padding: 1em;
     display: flex;
@@ -862,6 +887,8 @@ footer p {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+
 
 .email-points-box p {
     font-size: 14px;
@@ -884,6 +911,7 @@ footer p {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    gap: 1em;
 }
 
 .points-box {
@@ -1067,7 +1095,7 @@ footer p {
     padding: 1em;
     display: none;
     border-radius: 10px;
-    z-index: 1;
+    z-index: 200;
     align-items: center;
     gap: 2em;
     color: #313131;
@@ -1147,6 +1175,15 @@ footer p {
     scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    position: relative;
+}
+
+.not-found-main .landing h1 {
+    font-size: 2rem;
+    position: relative;
+    top: calc(50% + 2rem);
+    margin-top: 0;
+    transform: translateY(-50%);
 }
 
 .grabbing {
@@ -1158,6 +1195,7 @@ footer p {
 }
 
 .next-btn, .prev-btn {
+    z-index: 100;
     width: 48px;
     height: fit-content;
     padding: 0.8em;

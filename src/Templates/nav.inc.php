@@ -2,7 +2,11 @@
     <a href="inicio">
         <img src="public/img/logo.png" alt="">
     </a>
-    <ul class="">
+    <ul class="subnav">
+        <img src="public/img/logo.png" alt="">
+        <button type="button" class="exitHam">
+            <i class="fa-thin fa-xmark"></i>
+        </button>
         <a href="/routes">
             <li>Rutas y aeropuertos</li>
         </a>
@@ -14,14 +18,14 @@
         <a href="contacto">
             <li>Contacto</li>
         </a>
-        <span></span>
+        <span class="firstSep"></span>
         <a class="nav-reserve-now" href="">
             <li>
                 <i class="fa-solid fa-person-running"></i>
                 Voy con prisa
             </li>
         </a>
-        <span></span>
+        <span class="secondSep"></span>
         <div class="navAccountWrapper">
             <a id="showAccountSubmenu">
                 <li>
@@ -42,4 +46,7 @@
             </div>
         </div>
     </ul>
+    <button type="button" class="hamMenu">
+        <i class="fa-light fa-bars"></i>
+    </button>
 </nav>

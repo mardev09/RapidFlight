@@ -74,6 +74,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 submenu.remove();
             }
         }
+
+        // Hammenu check
+        const ham = document?.querySelector(".subnav")
+        const hamButton = document?.querySelector(".hamMenu")
+
+        if (ham.classList.contains("active")) {
+            if (!ham.contains(e.target) && !hamButton.contains(e.target)) {
+                ham.classList.remove('active')
+                document.body.style.overflow = 'unset';
+            }
+        }
     })
 
     // Mostar calendario
@@ -120,5 +131,26 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // Toggle del boton del nav para el submenu de cuenta y cerrar sesion
     document.querySelector('#showAccountSubmenu')?.addEventListener('click', e => {
 
+    })
+
+    // Ham menu
+    document.querySelector(".hamMenu")?.addEventListener('click', e => {
+        const ham = document.querySelector('.subnav')
+
+        if (ham.classList.contains("active")) {
+            ham.classList.remove('active')
+            document.body.style.overflow = 'unset';
+        } else {
+            ham.classList.add('active')
+            document.body.style.overflow = 'hidden';
+        }
+    })
+
+    // Close ham button
+    document.querySelector(".exitHam")?.addEventListener('click', e => {
+        const ham = document.querySelector('.subnav')
+
+        ham.classList.remove('active')
+        document.body.style.overflow = 'unset';
     })
 })

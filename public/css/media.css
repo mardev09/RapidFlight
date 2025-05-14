@@ -1,0 +1,357 @@
+@media screen and (max-width: 1500px) {
+    nav {
+        width: 80%;
+    }
+    
+    .pop-dests {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    nav {
+        width: 95%;
+    }
+
+    .navAccountBox {
+        right: 0.2em;
+    } 
+
+    .pop-dests {
+        width: 95%;
+    }
+
+    .why-us-head, .why-us .why-us-boxes, .flights-tracker h1, .flights-tracker div, .buy-flight-tickets h1, .buy-flight-p, .buy-flight-boxes {
+        width: 80%;
+    }
+
+    .flightBox h3, .myReserveBox h3 {
+        font-size: 1rem;
+    }
+
+    .flightBoxLeft h3, .flightBoxRight h3 {
+        font-size: 1.4rem;
+    }
+
+    .flightBoxLeftContent h3 p {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .box-list {
+        width: calc(32rem - 2em);
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .why-us-boxes {
+        flex-wrap: wrap;
+    }
+
+    .why-us-box {
+        width: calc(50% - 0.75em);
+    }
+
+    .buy-flight-box {
+        width: calc(50% - 1.5em);
+    }
+
+    nav {
+        width: 100%;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        z-index: 100;
+        backdrop-filter: blur(5px);
+    }
+
+    .search, .search-searcher,.search-from-to, .searcherBtnsContainer, .datePicker  {
+        width: 100%;
+    }
+
+    .search-select {
+        justify-content: space-between;
+    }
+
+    .search-from-to .search-select, .searcherBtnsContainer .search-select {
+        min-width: 100%;
+    }
+
+    .search-searcher-row {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .landing-container {
+        width: 95%;
+    }
+
+    .searchBtn {
+        width: 100%;
+    }
+
+    nav a {
+        align-self: center;
+    }
+
+    /* Ham Menu */
+    .hamMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+        cursor: pointer;
+    }
+
+    .hamMenu {
+        background-color: transparent;
+        border: 0;
+        font-size: 1.5rem;
+        color: #3b3b3b;
+        border-radius: 50%;
+        padding: 0.4em 0.5em;
+        background-color: #00000006;
+    }
+
+    .subnav {
+        display: none;
+        position: absolute;
+        min-height: 100vh;
+        background-color: #fffffff5;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+        width: 16em;
+        right: 0;
+        top: 0;
+        flex-direction: column;
+        padding: 1.5em;
+        align-items: flex-start;
+        transition: transform 300ms ease;
+    }
+
+    .subnav.active {
+        display: flex;
+        animation: leftIntro 300ms ease-in;
+    }
+
+    @keyframes leftIntro {
+        from {
+            transform: translateX(+100%);
+        }
+        to  {
+            transform: translateX(0);
+        }
+    }
+
+    .subnav a[href="/routes"] {
+        margin-top: 1em;
+    }
+
+    .subnav a {
+        width: 100%;
+    }
+
+    .subnav img {
+        display: block;
+        width: 9em;
+        padding: 0 0.7em;
+    }
+
+    .exitHam {
+        background-color: none;
+        border-radius: 50%;
+        padding: 0.4em 0.5em;
+        font-size: 1.3rem;
+        position: absolute;
+        top: 0.7em;
+        right: 0.8em;
+        border: 0;
+        display: block;
+    }
+
+    .subnav .firstSep {
+        display: none;
+    }
+
+    .subnav .secondSep {
+        border-right: 0;
+        border-top: 1px solid #00000017;
+        height: 0;
+        width: 100%;
+    }
+    
+    #showAccountSubmenu {
+        display: none;
+    }
+
+    .navAccountWrapper {
+        width: 100%;
+    }
+
+    .navAccountBox {
+        display: flex;
+        right: unset;
+        background-color: none;
+        box-shadow: none;
+        margin-top: 0;
+        padding: 0;
+        gap: 0.8em;
+        position: static;
+        width: 100%;
+    }
+
+    .navAccountBox a {
+        width: 100%;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .navAccountBox span {
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+    .landing {
+        min-height: fit-content;
+        padding: 0 0 2em 0;
+    }
+
+    .landing h1 {
+        margin-top: calc(4rem + 1em);
+    }
+
+    .pop-dests {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .landing h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .why-us-head, .why-us .why-us-boxes, .flights-tracker h1, .flights-tracker div, .buy-flight-tickets h1, .buy-flight-p, .buy-flight-boxes {
+        width: 90%;
+    }
+
+    .account {
+        gap: 6em;
+        padding: 0 1em;
+    }
+
+    .account-main {
+        width:50%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .account-navbar {
+        display: none;
+    }
+
+    .account-main {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .prev-btn, .next-btn {
+        display: none;
+    }
+
+    .box-list {
+        top: 2em;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: calc(564px + 4em);
+        overflow-y: scroll;
+    }
+
+    .box-list {
+        width: 32rem;
+        gap: 2em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .why-us-boxes {
+        flex-direction: column;
+    }
+
+    .why-us-box {
+        width: 100%;
+    }
+
+    .buy-flight-boxes {
+        flex-direction: column;
+    }
+
+    .buy-flight-box {
+        width: 100%;
+    }
+    
+    .landing h1 {
+        width: 100%;
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .box-list {
+        align-items: center;
+        width: 100%;
+    }
+
+    .flightBox {
+        width: 20rem;
+        padding: 0.5em;
+    }
+
+    .fligthBoxData {
+        gap: 0.5em;
+    }
+
+    .flightTime span {
+        width: 6rem;
+    }
+
+    .flightBoxLeftContent {
+        gap: 0;
+    } 
+
+    .flightBox h3, .myReserveBox h3, .flightBoxLeftAdditional, .flightTime p {
+        font-size: 0.7rem;
+    }
+
+    .flightBoxLeft h3, .flightBoxRight h3 {
+        font-size: 0.9rem;
+    }
+
+    .flightBoxLeftContent h3 p {
+        font-size: 0.6rem;
+        font-weight: 600;
+    }
+
+    .flightBox .flightBoxPrice p {
+        font-size: 0.8rem;
+    }
+    
+    .reserveButton {
+        font-size: 0.8rem;
+    } 
+
+    .flightBox, .flightBoxLeftAdditional {
+        gap: 0.5em;
+    }
+}
+
+@media screen and (max-height: 670px) {
+    .box-list {
+        max-height: calc(376px + 6em);
+    }
+}

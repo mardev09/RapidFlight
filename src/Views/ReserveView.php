@@ -60,7 +60,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
                                 </div>
                                 <span class="separator"></span>
                                 <div class="flightBoxRight">
-                                    <div>
+                                    <div class="flightBoxPrice">
                                         <p>
                                             Desde
                                         </p>

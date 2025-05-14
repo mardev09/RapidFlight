@@ -13,7 +13,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
             <div class="cloud x4"></div>
             <div class="cloud x5"></div>
         </div> -->
-        <div style="display: flex; flex-direction: column; gap: 1em; align-items: center">
+        <div class="landing-container">
             <h1>Bienvenido a RapidFlight: Tu portal de billetes de vuelo</h1>
             <?php include(TEMPLATE_DIR . "search.inc.php") ?>
         </div>
