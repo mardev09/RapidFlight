@@ -14,6 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE IF EXISTS rapidflight;
 
 -- Volcando estructura de base de datos para rapidflight
 CREATE DATABASE IF NOT EXISTS `rapidflight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
@@ -85,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   `destino` char(3) NOT NULL,
   `fechaHoraSalida` datetime NOT NULL,
   `fechaHoraLlegada` datetime NOT NULL,
+  `numBillete` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`idReserva`),
   KEY `usuario` (`usuario`),
   KEY `origen` (`origen`),
@@ -92,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`email`),
   CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`origen`) REFERENCES `ciudad` (`iata`),
   CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`destino`) REFERENCES `ciudad` (`iata`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- Volcando datos para la tabla rapidflight.reserva: ~0 rows (aproximadamente)
 

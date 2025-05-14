@@ -1,6 +1,11 @@
 <?php 
 include(TEMPLATE_DIR . "head.inc.php");
 include(TEMPLATE_DIR . "nav.inc.php");
+
+// Sino hay reservas un redirect al inicio
+if (!$data) {
+    header("Location: /inicio");
+}
 ?>
 
 <main class="not-found-main reservePage">

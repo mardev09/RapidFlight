@@ -27,7 +27,7 @@ class ReserveController extends Controller
         $reserve->addReserve($flight);
 
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($flight['origen']);
+        echo json_encode("hola");
         die;
     }
 }
