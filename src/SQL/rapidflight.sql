@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS rapidflight;
+DROP DATABASE IF EXISTS `rapidflight`;
 
 -- Volcando estructura de base de datos para rapidflight
 CREATE DATABASE IF NOT EXISTS `rapidflight` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
@@ -97,6 +97,16 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- Volcando datos para la tabla rapidflight.reserva: ~0 rows (aproximadamente)
+INSERT INTO `reserva` (`idReserva`, `usuario`, `origen`, `destino`, `fechaHoraSalida`, `fechaHoraLlegada`, `numBillete`) VALUES
+	(3, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 10:15:00', '2025-05-12 11:35:00', 'RPF16227'),
+	(4, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 10:20:00', '2025-05-12 11:45:00', 'RPF66620'),
+	(5, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF37693'),
+	(6, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF69220'),
+	(7, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF15108'),
+	(8, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF50180'),
+	(9, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF57001'),
+	(10, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF83284'),
+	(11, 'omar@gmail.com', 'MAD', 'PMI', '2025-05-12 21:45:00', '2025-05-12 23:05:00', 'RPF32665');
 
 -- Volcando estructura para tabla rapidflight.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
