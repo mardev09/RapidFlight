@@ -59,7 +59,7 @@ class PagesController extends Controller
         
 
         if (!isset($_SESSION['email'])) {
-            header('Location: /inicio');
+            header('Location: /login');
         }
 
         $reserve = $this->model('Reserve');
