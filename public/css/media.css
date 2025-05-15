@@ -227,6 +227,22 @@
     .pop-dests {
         display: none;
     }
+
+    .login-form {
+        width: 100%;
+    }
+
+    .login-form .login-details {
+        width: 90%;
+    }
+
+    .login {
+        justify-content: center;
+    }
+
+    .login-img {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -270,10 +286,8 @@
         overflow: hidden;
         max-height: calc(564px + 4em);
         overflow-y: scroll;
-    }
-
-    .box-list {
-        width: 32rem;
+        align-items: center;
+        width: 100%;
         gap: 2em;
     }
 }
