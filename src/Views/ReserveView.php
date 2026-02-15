@@ -1,4 +1,4 @@
-<?php 
+<?php
 include(TEMPLATE_DIR . "head.inc.php");
 include(TEMPLATE_DIR . "nav.inc.php");
 ?>
@@ -21,58 +21,59 @@ include(TEMPLATE_DIR . "nav.inc.php");
                         <i class="fa-solid fa-angle-left"></i>
                     </button>
                     <div class="box-list">
-                        <?php foreach($data as $k => $v) { ?>
-                        <div class="flightBox">
-                            <h3><?php echo $data[$k]['numeroVuelo'] . " - " . $data[$k]['aerolinea'] ?></h3>
-                            <div class="fligthBoxData">
-                                <div class="flightBoxLeft">
-                                    <div class="flightBoxLeftContent">
-                                        <h3>
-                                            <?php echo substr($data[$k]['horaSalida'], 0, -3) ?>
+                        <?php foreach ($data as $k => $v) { ?>
+                            <div class="flightBox">
+                                <h3><?php echo $data[$k]['numeroVuelo'] . " - " . $data[$k]['aerolinea'] ?></h3>
+                                <div class="fligthBoxData">
+                                    <div class="flightBoxLeft">
+                                        <div class="flightBoxLeftContent">
+                                            <h3>
+                                                <?php echo substr($data[$k]['horaSalida'], 0, -3) ?>
+                                                <p>
+                                                    <?php echo $data[$k]['origen'] ?>
+                                                </p>
+                                            </h3>
+                                            <div class="flightTime">
+                                                <span></span>
+                                                <p>
+                                                    <?php echo $data[$k]['datosImportantes']['duracion'] ?>
+                                                </p>
+                                            </div>
+                                            <h3>
+                                                <?php echo substr($data[$k]['horaLlegada'], 0, -3) ?>
+                                                <p>
+                                                    <?php echo $data[$k]['destino'] ?>
+                                                </p>
+                                            </h3>
+                                        </div>
+
+                                        <div class="flightBoxLeftAdditional">
                                             <p>
-                                                <?php echo $data[$k]['origen'] ?>
+                                                <i class="fa-solid fa-briefcase-blank"></i>
+                                                <?php echo ($data[$k]['datosImportantes']['equipajeManoIncluido']) ? "Equipaje de mano incluido" : "Equipaje de no mano incluido" ?>
                                             </p>
-                                        </h3>
-                                        <div class="flightTime">
-                                            <span></span>
                                             <p>
-                                                <?php echo $data[$k]['datosImportantes']['duracion'] ?>
+                                                <i class="fa-solid fa-plane-departure"></i>
+                                                <?php echo ($data[$k]['datosImportantes']['escalas'] > 0) ? $data[$k]['datosImportantes']['escalas'] . " escalas" : "Sin escalas" ?>
                                             </p>
                                         </div>
-                                        <h3>
-                                            <?php echo substr($data[$k]['horaLlegada'], 0, -3) ?>
+                                    </div>
+                                    <span class="separator"></span>
+                                    <div class="flightBoxRight">
+                                        <div class="flightBoxPrice">
                                             <p>
-                                                <?php echo $data[$k]['destino'] ?>
+                                                Desde
                                             </p>
-                                        </h3>
-                                    </div>
-                                    
-                                    <div class="flightBoxLeftAdditional">
-                                        <p>
-                                            <i class="fa-solid fa-briefcase-blank"></i>
-                                            <?php echo ($data[$k]['datosImportantes']['equipajeManoIncluido']) ? "Equipaje de mano incluido" : "Equipaje de no mano incluido" ?>
-                                        </p>
-                                        <p>
-                                            <i class="fa-solid fa-plane-departure"></i>
-                                            <?php echo ($data[$k]['datosImportantes']['escalas'] > 0) ? $data[$k]['datosImportantes']['escalas'] . " escalas" : "Sin escalas" ?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <span class="separator"></span>
-                                <div class="flightBoxRight">
-                                    <div class="flightBoxPrice">
-                                        <p>
-                                            Desde
-                                        </p>
-                                        <h3>
-                                            <?php echo floatval($data[$k]['precio']) . " €" ?>
-                                        </h3>
-                                    </div>
+                                            <h3>
+                                                <?php echo floatval($data[$k]['precio']) . " €" ?>
+                                            </h3>
+                                        </div>
 
-                                    <button type="submit" id="<?php echo $k ?>" class="reserveButton">Reservar</button>
+                                        <button type="submit" id="<?php echo $k ?>" class="reserveButton"
+                                            data-idvuelo="<?php echo $data[$k]['idVuelo'] ?? '' ?>">Reservar</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
                     <button id="next-btn" class="next-btn">

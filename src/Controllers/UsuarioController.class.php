@@ -2,13 +2,14 @@
 
 require_once("src/Core/Controller.php");
 
-class UsuarioController extends Controller 
+class UsuarioController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         $userModel = $this->model('Usuario');
         $data = $userModel->getUser($_POST['email']);
-        
-        if(password_verify($_POST['password'], $data['password'])) {
+
+        if (password_verify($_POST['password'], $data['password'])) {
             session_start();
 
             $_SESSION['email'] = $data['email'];
@@ -21,10 +22,19 @@ class UsuarioController extends Controller
         header('Location: /login');
     }
 
-    public function register() {
-        $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    public function register()
+    {
+        $email = $_POST['email'];
         $userModel = $this->model('Usuario');
-        $userModel->addUser([$_POST['email'], $hash]);
+
+        if ($userModel->checkEmailExists($email)) {
+            // Manejar error de email duplicado
+            header('Location: /register?error=email_exists');
+            die;
+        }
+
+        $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $userModel->addUser([$email, $hash]);
 
         header('Location: /login');
     }

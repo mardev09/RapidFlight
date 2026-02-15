@@ -7,7 +7,7 @@
         <button type="button" class="exitHam">
             <i class="fa-thin fa-xmark"></i>
         </button>
-        <a href="/routes">
+        <a href="/vuelos">
             <li>Rutas y aeropuertos</li>
         </a>
         <?php if (isset($_SESSION['email'])) { ?>
@@ -19,7 +19,7 @@
             <li>Contacto</li>
         </a>
         <span class="firstSep"></span>
-        <a class="nav-reserve-now" href="">
+        <a class="nav-reserve-now" href="/vuelos?prisa=1">
             <li>
                 <i class="fa-solid fa-person-running"></i>
                 Voy con prisa

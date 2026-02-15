@@ -1,5 +1,5 @@
-<?php 
-    $minDate = date('Y-m-d');
+<?php
+$minDate = date('Y-m-d');
 ?>
 
 <form class="search" action="/reserve" method="POST">
@@ -35,7 +35,7 @@
             <button type="button" class="search-select datePicker" id="ida" data-window="calendarModal">
                 <span>
                     <p>Ida</p>
-                    <input type="date" min="<?php echo $minDate ?>" >
+                    <input type="date" min="<?php echo $minDate ?>">
                 </span>
                 <i class="hgi hgi-stroke hgi-calendar-03"></i>
             </button>
@@ -45,20 +45,10 @@
                     <input type="date" min="<?php echo $minDate ?>">
                 </span>
                 <i class="hgi hgi-stroke hgi-calendar-03"></i>
-            </button>
-            <span class="searcherBtnsContainer">
-                <button type="button" class="search-select" data-window="passenger">
-                    <span>
-                        <p>Pasajeros</p>
-                        <p>1 pasajero/s</p>
-                    </span>
-                    <i class="fa-solid fa-person"></i>
+                <button type="submit" class="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Buscar</p>
                 </button>
-            </span>
-            <button type="submit" class="searchBtn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <p>Buscar</p>
-            </button>
         </div>
 
         <!-- <div class="search-others">
@@ -84,32 +74,15 @@
             <input type="text">
         </div> -->
         <div class="cities">
-            <?php foreach($data as $k => $v) { ?>
-            <button type="button">
-                <p><?php echo $data[$k]['ciudad'] ?></p>
-                <p><?php echo $data[$k]['provincia'] . ", " . $data[$k]['pais'] ?></p>
-            </button>
+            <?php
+            $citiesList = (isset($data['cities'])) ? $data['cities'] : $data;
+            foreach ($citiesList as $city) {
+                ?>
+                <button type="button">
+                    <p><?php echo $city['ciudad'] ?></p>
+                    <p><?php echo $city['provincia'] . ", " . $city['pais'] ?></p>
+                </button>
             <?php } ?>
-            <!-- <button type="button">
-                <p>Sevilla</p>
-                <p>Andalucía, España</p>
-            </button>
-            <button type="button">
-                <p>Córdoba</p>
-                <p>Andalucía, España</p>
-            </button>
-            <button type="button">
-                <p>Almería</p>
-                <p>Andalucía, España</p>
-            </button>
-            <button type="button">
-                <p>Madrid</p>
-                <p>Madrid, España</p>
-            </button>
-            <button type="button">
-                <p>Barcelona</p>
-                <p>Barcelona, España</p>
-            </button> -->
         </div>
     </div>
 </template>
@@ -117,21 +90,5 @@
 <template id="calendarModal">
     <div>
         <p>1</p>
-    </div>
-</template>
-
-<template id="passenger">
-    <div class="passenger submenu">
-        <p>Pasajero/s</p>
-
-        <div class="counter">
-            <button type="button" class="counterButton" id="counterMore">
-                <i class="fa-light fa-plus"></i>
-            </button>
-            <p>1</p>
-            <button type="button" class="counterButton" id="counterLess">
-                <i class="fa-light fa-minus"></i>
-            </button>
-        </div>
     </div>
 </template>

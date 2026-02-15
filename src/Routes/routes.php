@@ -18,4 +18,22 @@ $router->add('GET', '/my-reserves', 'PagesController@ownReserves');
 $router->add('POST', '/getIATA', 'ReserveController@getIATA');
 $router->add('POST', '/reserve-submit', 'ReserveController@reserveSubmit');
 
+// Nuevas rutas
+$router->add('POST', '/search-flights', 'ReserveController@searchFlights');
+$router->add('GET', '/vuelos', 'PagesController@flights');
+$router->add('POST', '/vuelos', 'PagesController@flights');
+
+// Pagos
+$router->add('GET', '/pago', 'PaymentController@showPaymentForm'); // Usar ?idReserva=X
+$router->add('POST', '/process-payment', 'PaymentController@processPayment');
+$router->add('GET', '/comprobante', 'PaymentController@generateReceipt'); // Usar ?idPago=X
+
+// Tienda
+$router->add('GET', '/tienda', 'StoreController@showStore');
+$router->add('POST', '/canjear-producto', 'StoreController@redeemProduct');
+
+// Perfil
+$router->add('GET', '/editar-perfil', 'ProfileController@showEditForm');
+$router->add('POST', '/actualizar-perfil', 'ProfileController@updateProfile');
+
 $router->handler();
