@@ -244,6 +244,8 @@ input.flatpickr-input.form-control.input {
     appearance: none;
 }
 
+
+
 /* —— Inside filter groups (.vuelos-filter-group) —— */
 .vuelos-filter-group input.flatpickr-input.form-control.input {
     border: 1px solid #e0e0e0;

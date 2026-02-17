@@ -23,148 +23,36 @@ sort($airlines);
         </div>
     </section>
 
-    <?php
-    $hasSearch = isset($data['vuelosIda']) && !empty($data['vuelosIda']);
-    $hasVuelta = isset($data['vuelosVuelta']) && !empty($data['vuelosVuelta']);
-    $searchOrigin = isset($data['searchOrigin']) ? htmlspecialchars($data['searchOrigin']) : '';
-    $searchDest = isset($data['searchDest']) ? htmlspecialchars($data['searchDest']) : '';
-    ?>
-
-    <?php if ($hasSearch) { ?>
-        <!-- ===== RESULTADOS DE BÚSQUEDA ===== -->
-        <section class="vuelos-section vuelos-search-results">
-            <div class="vuelos-container">
-
-                <!-- IDA -->
-                <div class="vuelos-search-block">
-                    <div class="vuelos-search-header">
-                        <div class="vuelos-search-badge ida">
-                            <i class="fa-solid fa-plane-departure"></i>
-                            Vuelos de ida
-                        </div>
-                        <p class="vuelos-search-route"><?php echo $searchOrigin ?> <i class="fa-solid fa-arrow-right"></i>
-                            <?php echo $searchDest ?></p>
-                        <p class="vuelos-count"><span><?php echo count($data['vuelosIda']) ?></span> vuelos encontrados</p>
-                    </div>
-                    <div class="vuelos-grid">
-                        <?php foreach ($data['vuelosIda'] as $flight) { ?>
-                            <div class="vuelo-card">
-                                <div class="vuelo-card-top">
-                                    <div class="vuelo-airline">
-                                        <i class="fa-solid fa-plane-up" style="color: #09b1be;"></i>
-                                        <span><?php echo htmlspecialchars($flight['aerolinea']) ?></span>
-                                    </div>
-                                    <div class="vuelo-top-right">
-                                        <span class="vuelo-date"><i class="fa-regular fa-calendar"></i> <?php
-                                        $dateObj = DateTime::createFromFormat('Y-m-d', $flight['fechaSalida']);
-                                        echo $dateObj ? $dateObj->format('d M Y') : $flight['fechaSalida'];
-                                        ?></span>
-                                        <span
-                                            class="vuelo-flight-number"><?php echo htmlspecialchars($flight['numeroVuelo']) ?></span>
-                                    </div>
-                                </div>
-                                <div class="vuelo-route">
-                                    <div class="vuelo-point">
-                                        <h3><?php echo substr($flight['horaSalida'], 0, 5) ?></h3>
-                                        <p><?php echo htmlspecialchars($flight['origen']) ?></p>
-                                    </div>
-                                    <div class="vuelo-line">
-                                        <div class="vuelo-line-dot"></div>
-                                        <div class="vuelo-line-bar"></div>
-                                        <span class="vuelo-duration"><?php echo $flight['duracionMinutos'] ?> min</span>
-                                        <div class="vuelo-line-bar"></div>
-                                        <div class="vuelo-line-dot"></div>
-                                    </div>
-                                    <div class="vuelo-point">
-                                        <h3><?php echo substr($flight['horaLlegada'], 0, 5) ?></h3>
-                                        <p><?php echo htmlspecialchars($flight['destino']) ?></p>
-                                    </div>
-                                </div>
-                                <div class="vuelo-card-bottom">
-                                    <div class="vuelo-price">
-                                        <span class="vuelo-price-value"><?php echo $flight['precio'] ?> €</span>
-                                        <span class="vuelo-price-label">por persona</span>
-                                    </div>
-                                    <button class="vuelo-reserve-btn" data-id="<?php echo $flight['idVuelo'] ?>">
-                                        Reservar
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-
-                <?php if ($hasVuelta) { ?>
-                    <!-- VUELTA -->
-                    <div class="vuelos-search-block vuelta-block">
-                        <div class="vuelos-search-header">
-                            <div class="vuelos-search-badge vuelta">
-                                <i class="fa-solid fa-plane-arrival"></i>
-                                Vuelos de vuelta
-                            </div>
-                            <p class="vuelos-search-route"><?php echo $searchDest ?> <i class="fa-solid fa-arrow-right"></i>
-                                <?php echo $searchOrigin ?></p>
-                            <p class="vuelos-count"><span><?php echo count($data['vuelosVuelta']) ?></span> vuelos encontrados
-                            </p>
-                        </div>
-                        <div class="vuelos-grid">
-                            <?php foreach ($data['vuelosVuelta'] as $flight) { ?>
-                                <div class="vuelo-card">
-                                    <div class="vuelo-card-top">
-                                        <div class="vuelo-airline">
-                                            <i class="fa-solid fa-plane-up" style="color: #09b1be;"></i>
-                                            <span><?php echo htmlspecialchars($flight['aerolinea']) ?></span>
-                                        </div>
-                                        <div class="vuelo-top-right">
-                                            <span class="vuelo-date"><i class="fa-regular fa-calendar"></i> <?php
-                                            $dateObj = DateTime::createFromFormat('Y-m-d', $flight['fechaSalida']);
-                                            echo $dateObj ? $dateObj->format('d M Y') : $flight['fechaSalida'];
-                                            ?></span>
-                                            <span
-                                                class="vuelo-flight-number"><?php echo htmlspecialchars($flight['numeroVuelo']) ?></span>
-                                        </div>
-                                    </div>
-                                    <div class="vuelo-route">
-                                        <div class="vuelo-point">
-                                            <h3><?php echo substr($flight['horaSalida'], 0, 5) ?></h3>
-                                            <p><?php echo htmlspecialchars($flight['origen']) ?></p>
-                                        </div>
-                                        <div class="vuelo-line">
-                                            <div class="vuelo-line-dot"></div>
-                                            <div class="vuelo-line-bar"></div>
-                                            <span class="vuelo-duration"><?php echo $flight['duracionMinutos'] ?> min</span>
-                                            <div class="vuelo-line-bar"></div>
-                                            <div class="vuelo-line-dot"></div>
-                                        </div>
-                                        <div class="vuelo-point">
-                                            <h3><?php echo substr($flight['horaLlegada'], 0, 5) ?></h3>
-                                            <p><?php echo htmlspecialchars($flight['destino']) ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="vuelo-card-bottom">
-                                        <div class="vuelo-price">
-                                            <span class="vuelo-price-value"><?php echo $flight['precio'] ?> €</span>
-                                            <span class="vuelo-price-label">por persona</span>
-                                        </div>
-                                        <button class="vuelo-reserve-btn" data-id="<?php echo $flight['idVuelo'] ?>">
-                                            Reservar
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </section>
-    <?php } ?>
-
     <section class="vuelos-section">
         <div class="vuelos-container">
             <div class="vuelos-header">
-                <h2>Todos los vuelos disponibles</h2>
+                <?php
+                $searchContext = isset($data['searchContext']) ? $data['searchContext'] : [];
+                $hasSearch = !empty($searchContext);
+                $isRoundTrip = !empty($searchContext['fechaVuelta']);
+                if ($hasSearch) {
+                    $headerParts = [];
+                    if (!empty($searchContext['origen']) && !empty($searchContext['destino'])) {
+                        echo '<h2>Vuelos de ' . htmlspecialchars($searchContext['origen']) . ' a ' . htmlspecialchars($searchContext['destino']) . '</h2>';
+                    } elseif (!empty($searchContext['destino'])) {
+                        echo '<h2>Vuelos a ' . htmlspecialchars($searchContext['destino']) . '</h2>';
+                    } elseif (!empty($searchContext['origen'])) {
+                        echo '<h2>Vuelos desde ' . htmlspecialchars($searchContext['origen']) . '</h2>';
+                    } elseif (!empty($searchContext['fechaIda'])) {
+                        $dateObj = DateTime::createFromFormat('Y-m-d', $searchContext['fechaIda']);
+                        echo '<h2>Vuelos disponibles — ' . ($dateObj ? $dateObj->format('d M Y') : $searchContext['fechaIda']) . '</h2>';
+                    } else {
+                        echo '<h2>Resultados de búsqueda</h2>';
+                    }
+                    // Subtítulo "Vuelo de ida" cuando es ida y vuelta
+                    if ($isRoundTrip && !empty($searchContext['fechaIda'])) {
+                        $dateIda = DateTime::createFromFormat('Y-m-d', $searchContext['fechaIda']);
+                        echo '<p class="vuelos-trip-label"><i class="fa-solid fa-plane-departure"></i> Vuelo de ida · ' . ($dateIda ? $dateIda->format('d M Y') : $searchContext['fechaIda']) . '</p>';
+                    }
+                } else {
+                    echo '<h2>Todos los vuelos disponibles</h2>';
+                }
+                ?>
                 <p class="vuelos-count"><span id="flights-count"><?php echo count($flights) ?></span> vuelos encontrados
                 </p>
             </div>
@@ -308,12 +196,102 @@ sort($airlines);
                 <?php } ?>
             </div>
 
-            <!-- Estado vacío -->
-            <div class="vuelos-empty" id="flights-empty" style="display: none;">
+            <!-- Estado vacío ida -->
+            <div class="vuelos-empty" id="flights-empty"
+                style="display: <?php echo empty($flights) ? 'block' : 'none'; ?>;">
                 <i class="fa-solid fa-plane-slash"></i>
                 <h3>No se encontraron vuelos</h3>
                 <p>Prueba a cambiar los filtros de búsqueda</p>
             </div>
+
+            <?php
+            $flightsVuelta = isset($data['flightsVuelta']) ? $data['flightsVuelta'] : [];
+            if (!empty($flightsVuelta)) {
+                ?>
+                <!-- VUELTA -->
+                <div class="vuelos-divider">
+                    <i class="fa-solid fa-plane-arrival"></i>
+                    <h2>Vuelo de vuelta</h2>
+                    <p>
+                        <?php
+                        if (!empty($searchContext['destino']) && !empty($searchContext['origen'])) {
+                            echo htmlspecialchars($searchContext['destino']) . ' → ' . htmlspecialchars($searchContext['origen']);
+                        }
+                        if (!empty($searchContext['fechaVuelta'])) {
+                            $dateVuelta = DateTime::createFromFormat('Y-m-d', $searchContext['fechaVuelta']);
+                            echo ' · ' . ($dateVuelta ? $dateVuelta->format('d M Y') : $searchContext['fechaVuelta']);
+                        }
+                        ?>
+                    </p>
+                </div>
+
+                <div class="vuelos-grid">
+                    <?php foreach ($flightsVuelta as $flight) { ?>
+                        <div class="vuelo-card" data-airline="<?php echo htmlspecialchars($flight['aerolinea']) ?>"
+                            data-price="<?php echo $flight['precio'] ?>"
+                            data-duration="<?php echo $flight['duracionMinutos'] ?>"
+                            data-origin="<?php echo htmlspecialchars($flight['origen']) ?>"
+                            data-destination="<?php echo htmlspecialchars($flight['destino']) ?>"
+                            data-flight="<?php echo htmlspecialchars($flight['numeroVuelo']) ?>"
+                            data-date="<?php echo $flight['fechaSalida'] ?>">
+
+                            <div class="vuelo-card-top">
+                                <div class="vuelo-airline">
+                                    <i class="fa-solid fa-plane-up" style="color: #09b1be;"></i>
+                                    <span><?php echo htmlspecialchars($flight['aerolinea']) ?></span>
+                                </div>
+                                <div class="vuelo-top-right">
+                                    <span class="vuelo-date"><i class="fa-regular fa-calendar"></i> <?php
+                                    $dateObj = DateTime::createFromFormat('Y-m-d', $flight['fechaSalida']);
+                                    echo $dateObj ? $dateObj->format('d M Y') : $flight['fechaSalida'];
+                                    ?></span>
+                                    <span
+                                        class="vuelo-flight-number"><?php echo htmlspecialchars($flight['numeroVuelo']) ?></span>
+                                </div>
+                            </div>
+
+                            <div class="vuelo-route">
+                                <div class="vuelo-point">
+                                    <span class="vuelo-time"><?php echo $flight['horaSalida'] ?></span>
+                                    <p><?php echo htmlspecialchars($flight['origen']) ?></p>
+                                </div>
+                                <div class="vuelo-line">
+                                    <span class="vuelo-duration"><?php echo floor($flight['duracionMinutos'] / 60) ?>h
+                                        <?php echo $flight['duracionMinutos'] % 60 ?>m</span>
+                                    <div class="vuelo-line-bar"></div>
+                                    <span
+                                        class="vuelo-stops"><?php echo $flight['escalas'] == 0 ? 'Directo' : $flight['escalas'] . ' escala/s' ?></span>
+                                </div>
+                                <div class="vuelo-point">
+                                    <span class="vuelo-time"><?php echo $flight['horaLlegada'] ?></span>
+                                    <p><?php echo htmlspecialchars($flight['destino']) ?></p>
+                                </div>
+                            </div>
+
+                            <div class="vuelo-card-bottom">
+                                <div class="vuelo-price">
+                                    <span class="vuelo-price-value"><?php echo $flight['precio'] ?> €</span>
+                                    <span class="vuelo-price-label">por persona</span>
+                                </div>
+                                <button class="vuelo-reserve-btn" data-id="<?php echo $flight['idVuelo'] ?>">
+                                    Reservar
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <!-- Estado vacío vuelta -->
+                <?php if (empty($flightsVuelta)) { ?>
+                    <div class="vuelos-empty">
+                        <i class="fa-solid fa-plane-slash"></i>
+                        <h3>No se encontraron vuelos de vuelta</h3>
+                        <p>No hay vuelos disponibles para la fecha seleccionada</p>
+                    </div>
+                <?php } ?>
+
+            <?php } ?>
         </div>
     </section>
 </main>
@@ -323,6 +301,7 @@ sort($airlines);
     .vuelos-section {
         padding: 3em 0;
         background-color: #f8f9fa;
+        min-height: 50vh;
     }
 
     .vuelos-container {
@@ -350,6 +329,17 @@ sort($airlines);
     .vuelos-count span {
         color: #09b1be;
         font-weight: bold;
+    }
+
+    .vuelos-trip-label {
+        color: #09b1be;
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-top: 0.3em;
+    }
+
+    .vuelos-trip-label i {
+        margin-right: 0.3em;
     }
 
     /* ===== FILTROS ===== */
@@ -721,6 +711,31 @@ sort($airlines);
         margin-bottom: 0.3em;
     }
 
+    /* ===== VUELTA DIVIDER ===== */
+    .vuelos-divider {
+        text-align: center;
+        padding: 2.5em 0 1em;
+        margin-top: 2em;
+        border-top: 2px solid #e8e8e8;
+    }
+
+    .vuelos-divider i {
+        font-size: 2rem;
+        color: #09b1be;
+        margin-bottom: 0.3em;
+    }
+
+    .vuelos-divider h2 {
+        font-size: 1.4rem;
+        color: #2d2d2d;
+        margin: 0.2em 0;
+    }
+
+    .vuelos-divider p {
+        color: #8b8b8b;
+        font-size: 0.95rem;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
         .vuelos-container {
@@ -868,24 +883,9 @@ sort($airlines);
         });
     });
 
-    // ===== PRE-FILL DESDE URL =====
+    // ===== AUTO-SCROLL si hay búsqueda =====
     const urlParams = new URLSearchParams(window.location.search);
-    const destinoParam = urlParams.get('destino');
-    const prisaParam = urlParams.get('prisa');
-
-    if (prisaParam === '1') {
-        // "Voy con prisa" — filtrar por fecha de hoy
-        const today = new Date().toISOString().split('T')[0];
-        if (filterDate._flatpickr) {
-            filterDate._flatpickr.setDate(today, true);
-        } else {
-            filterDate.value = today;
-        }
-        applyFilters();
-        document.querySelector('.vuelos-section').scrollIntoView({ behavior: 'smooth' });
-    } else if (destinoParam) {
-        filterSearch.value = destinoParam;
-        applyFilters();
+    if (urlParams.has('origen') || urlParams.has('destino') || urlParams.has('fechaIda') || urlParams.has('prisa')) {
         document.querySelector('.vuelos-section').scrollIntoView({ behavior: 'smooth' });
     }
 </script>

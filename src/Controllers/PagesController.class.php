@@ -97,26 +97,83 @@ class PagesController extends Controller
         $cities = $reserve->getCities();
 
         $flightModel = $this->model('Flight');
-        $flights = $flightModel->getAllFlights();
 
-        $data = ['cities' => $cities, 'flights' => $flights];
+        // Parámetros de búsqueda desde el formulario
+        $origenParam = isset($_GET['origen']) ? trim($_GET['origen']) : '';
+        $destinoParam = isset($_GET['destino']) ? trim($_GET['destino']) : '';
+        $fechaIda = isset($_GET['fechaIda']) ? trim($_GET['fechaIda']) : '';
+        $fechaVuelta = isset($_GET['fechaVuelta']) ? trim($_GET['fechaVuelta']) : '';
+        $prisa = isset($_GET['prisa']) ? $_GET['prisa'] : '';
 
-        // Si viene de una búsqueda (POST desde ajax.js)
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['vuelosIda'])) {
-                $data['vuelosIda'] = json_decode($_POST['vuelosIda'], true);
+        $searchContext = [];
+        $flights = [];
+        $flightsVuelta = [];
+
+        if ($prisa === '1') {
+            // "Voy con prisa" — vuelos de hoy en adelante
+            $fechaIda = date('Y-m-d');
+            $searchContext['fechaIda'] = $fechaIda;
+            $flights = $flightModel->getFlightsByDate($fechaIda);
+        } elseif ($origenParam || $destinoParam || $fechaIda) {
+            // Búsqueda con filtros desde el buscador
+            $searchContext['origen'] = $origenParam;
+            $searchContext['destino'] = $destinoParam;
+            $searchContext['fechaIda'] = $fechaIda;
+            if ($fechaVuelta) {
+                $searchContext['fechaVuelta'] = $fechaVuelta;
             }
-            if (isset($_POST['vuelosVuelta'])) {
-                $data['vuelosVuelta'] = json_decode($_POST['vuelosVuelta'], true);
+
+            // Convertir nombres de ciudad a IATA si es necesario
+            $iataOrigen = '';
+            $iataDestino = '';
+
+            if ($origenParam) {
+                $result = $reserve->getIATA($origenParam);
+                $iataOrigen = $result ? $result['iata'] : $origenParam;
             }
-            if (isset($_POST['searchOrigin'])) {
-                $data['searchOrigin'] = $_POST['searchOrigin'];
+            if ($destinoParam) {
+                $result = $reserve->getIATA($destinoParam);
+                $iataDestino = $result ? $result['iata'] : $destinoParam;
             }
-            if (isset($_POST['searchDest'])) {
-                $data['searchDest'] = $_POST['searchDest'];
+
+            // Vuelos de ida
+            if ($iataOrigen && $iataDestino && $fechaIda) {
+                $flights = $flightModel->searchFlights($iataOrigen, $iataDestino, $fechaIda);
+            } elseif ($iataOrigen && $iataDestino) {
+                $flights = $flightModel->getFlightsByRoute($iataOrigen, $iataDestino);
+            } elseif ($iataDestino && $fechaIda) {
+                $flights = $flightModel->getFlightsByDestAndDate($iataDestino, $fechaIda);
+            } elseif ($iataDestino) {
+                $flights = $flightModel->getFlightsByDest($iataDestino);
+            } elseif ($iataOrigen) {
+                $flights = $flightModel->getFlightsByOrigin($iataOrigen);
+            } elseif ($fechaIda) {
+                $flights = $flightModel->getFlightsByDate($fechaIda);
+            } else {
+                $flights = $flightModel->getAllFlights();
             }
+
+            // Vuelos de vuelta (ruta invertida: destino → origen)
+            if ($fechaVuelta && $iataOrigen && $iataDestino) {
+                $flightsVuelta = $flightModel->searchFlights($iataDestino, $iataOrigen, $fechaVuelta);
+                if (!is_array($flightsVuelta)) {
+                    $flightsVuelta = [];
+                }
+            }
+        } else {
+            // Sin búsqueda — todos los vuelos
+            $flights = $flightModel->getAllFlights();
         }
 
-        $this->view('FlightsView', $data);
+        if (!is_array($flights)) {
+            $flights = [];
+        }
+
+        $this->view('FlightsView', [
+            'cities' => $cities,
+            'flights' => $flights,
+            'flightsVuelta' => $flightsVuelta,
+            'searchContext' => $searchContext
+        ]);
     }
 }

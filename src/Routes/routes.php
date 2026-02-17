@@ -21,7 +21,6 @@ $router->add('POST', '/reserve-submit', 'ReserveController@reserveSubmit');
 // Nuevas rutas
 $router->add('POST', '/search-flights', 'ReserveController@searchFlights');
 $router->add('GET', '/vuelos', 'PagesController@flights');
-$router->add('POST', '/vuelos', 'PagesController@flights');
 
 // Pagos
 $router->add('GET', '/pago', 'PaymentController@showPaymentForm'); // Usar ?idReserva=X

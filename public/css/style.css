@@ -302,20 +302,28 @@ nav ul span {
     transition: 200ms ease;
 }
 
-.search-select span input[type="date"] {
-    background-color: transparent;
-    border: 0;
+.search-select span input[type="date"],
+.search-select span input.flatpickr-input,
+.search-select span input.form-control.input {
+    background-color: transparent !important;
+    border: 0 !important;
     cursor: pointer;
-    color: #313131;
-    outline: none;
-}
-
-.search-select span input::-webkit-datetime-edit-day-field:focus,
-.search-select span input::-webkit-datetime-edit-month-field:focus,
-.search-select span input::-webkit-datetime-edit-year-field:focus {
-    color: white;
-    background-color: #0999a3;
-    outline: none;
+    color: #3b3b3b;
+    outline: none !important;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: normal;
+    font-family: inherit;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .search-select span input[type="date"]::-webkit-inner-spin-button,
@@ -375,14 +383,14 @@ nav ul span {
     align-items: center;
     justify-content: center;
     gap: 0.25em;
-    padding: 0.8em 1em;
+    padding: 0.6em 1.5em;
     color: white;
     border: 0;
     cursor: pointer;
     font-size: 1.05rem;
     z-index: 2;
     transition: 200ms ease;
-    height: 100%;
+    align-self: center;
     flex-shrink: 0;
     white-space: nowrap;
 }

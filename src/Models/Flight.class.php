@@ -85,4 +85,45 @@ class Flight
 
         return $this->db->query($sql, $params, true, true);
     }
+
+    public function getFlightsByDate($fecha)
+    {
+        return $this->db->query("
+            SELECT * FROM vuelo 
+            WHERE fechaSalida >= ?
+            AND activo = 1
+            ORDER BY fechaSalida ASC, precio ASC
+        ", [$fecha], true, true);
+    }
+
+    public function getFlightsByDest($destino)
+    {
+        return $this->db->query("
+            SELECT * FROM vuelo 
+            WHERE destino = ?
+            AND activo = 1
+            ORDER BY fechaSalida ASC, precio ASC
+        ", [$destino], true, true);
+    }
+
+    public function getFlightsByOrigin($origen)
+    {
+        return $this->db->query("
+            SELECT * FROM vuelo 
+            WHERE origen = ?
+            AND activo = 1
+            ORDER BY fechaSalida ASC, precio ASC
+        ", [$origen], true, true);
+    }
+
+    public function getFlightsByDestAndDate($destino, $fecha)
+    {
+        return $this->db->query("
+            SELECT * FROM vuelo 
+            WHERE destino = ?
+            AND fechaSalida = ?
+            AND activo = 1
+            ORDER BY precio ASC
+        ", [$destino, $fecha], true, true);
+    }
 }
