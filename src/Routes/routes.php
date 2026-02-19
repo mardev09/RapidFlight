@@ -30,6 +30,7 @@ $router->add('GET', '/comprobante', 'PaymentController@generateReceipt'); // Usa
 // Tienda
 $router->add('GET', '/tienda', 'StoreController@showStore');
 $router->add('POST', '/canjear-producto', 'StoreController@redeemProduct');
+$router->add('GET', '/mis-canjes', 'StoreController@showRedeemed');
 
 // Perfil
 $router->add('GET', '/editar-perfil', 'ProfileController@showEditForm');

@@ -10,10 +10,14 @@ $puntos = isset($data['puntos']) ? $data['puntos'] : 0;
     <section class="account-navbar">
         <div class="email-points-box">
             <i class="fa-solid fa-user usr-icon"></i>
-            <p><?php echo $_SESSION['email'] ?></p>
+            <p>
+                <?php echo $_SESSION['email'] ?>
+            </p>
             <div class="account-points">
                 <div class="points-box">
-                    <p><?php echo $puntos ?> puntos</p>
+                    <p>
+                        <?php echo $puntos ?> puntos
+                    </p>
                     <i class="fa-light fa-circle-info"></i>
                 </div>
                 <a href="/tienda" class="claim-points">
@@ -23,13 +27,13 @@ $puntos = isset($data['puntos']) ? $data['puntos'] : 0;
             </div>
         </div>
         <div class="account-navbar-links">
-            <a href="#" id="openEditModal">
-                Información personal
+            <a href="/mis-canjes">
+                Mis cupones
                 <i class="fa-light fa-angle-right"></i>
             </a>
-            <a href="/tienda">
-                Tienda de puntos
-                <i class="fa-light fa-angle-right"></i>
+            <a href="/logout" style="color: #e74c3c;">
+                Cerrar sesión
+                <i class="fa-light fa-right-from-bracket"></i>
             </a>
         </div>
     </section>
@@ -399,6 +403,7 @@ $puntos = isset($data['puntos']) ? $data['puntos'] : 0;
 
                     modal.classList.remove('active');
                     document.body.style.overflow = '';
+                    rpfPopup('success', 'Datos actualizados', 'Tu información personal se ha guardado correctamente.');
                 } else {
                     rpfPopup('error', 'Error al guardar', data.message || 'No se pudieron guardar los cambios');
                 }

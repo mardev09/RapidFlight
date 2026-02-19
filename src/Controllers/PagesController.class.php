@@ -169,11 +169,26 @@ class PagesController extends Controller
             $flights = [];
         }
 
+        // Crear mapa IATA -> Ciudad
+        $iataToCity = [];
+        foreach ($cities as $city) {
+            $iataToCity[$city['iata']] = $city['ciudad'];
+        }
+
+        // Convertir IATA a Nombre en searchContext para el título
+        if (isset($searchContext['origen']) && isset($iataToCity[$searchContext['origen']])) {
+            $searchContext['origen'] = $iataToCity[$searchContext['origen']];
+        }
+        if (isset($searchContext['destino']) && isset($iataToCity[$searchContext['destino']])) {
+            $searchContext['destino'] = $iataToCity[$searchContext['destino']];
+        }
+
         $this->view('FlightsView', [
             'cities' => $cities,
             'flights' => $flights,
             'flightsVuelta' => $flightsVuelta,
-            'searchContext' => $searchContext
+            'searchContext' => $searchContext,
+            'iataToCity' => $iataToCity
         ]);
     }
 }

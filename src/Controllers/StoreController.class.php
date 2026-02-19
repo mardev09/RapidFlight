@@ -22,6 +22,8 @@ class StoreController extends Controller
 
     public function redeemProduct()
     {
+        header('Content-Type: application/json; charset=utf-8');
+
         if (!isset($_SESSION['email'])) {
             echo json_encode(['success' => false, 'message' => 'No autorizado']);
             die;
@@ -50,8 +52,26 @@ class StoreController extends Controller
         if ($pointsModel->redeemPoints($_SESSION['email'], $producto['puntosRequeridos'], $idProducto)) {
             $storeModel->updateStock($idProducto);
             echo json_encode(['success' => true, 'message' => 'Canje exitoso']);
+            die;
         } else {
             echo json_encode(['success' => false, 'message' => 'Puntos insuficientes']);
+            die;
         }
+    }
+
+    public function showRedeemed()
+    {
+        if (!isset($_SESSION['email'])) {
+            header('Location: /login');
+            die;
+        }
+
+        $storeModel = $this->model('Store');
+        $redeemed = $storeModel->getRedeemedProducts($_SESSION['email']);
+
+        $pointsModel = $this->model('Points');
+        $puntos = $pointsModel->getUserPoints($_SESSION['email']);
+
+        $this->view('MyRedeemedView', ['redeemed' => $redeemed, 'puntos' => $puntos]);
     }
 }

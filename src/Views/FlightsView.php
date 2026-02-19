@@ -143,9 +143,12 @@ sort($airlines);
                 <?php foreach ($flights as $flight) { ?>
                     <div class="vuelo-card" data-airline="<?php echo htmlspecialchars($flight['aerolinea']) ?>"
                         data-price="<?php echo $flight['precio'] ?>"
+                        data-price="<?php echo $flight['precio'] ?>"
                         data-duration="<?php echo $flight['duracionMinutos'] ?>"
                         data-origin="<?php echo htmlspecialchars($flight['origen']) ?>"
                         data-destination="<?php echo htmlspecialchars($flight['destino']) ?>"
+                        data-origin-name="<?php $orig = $flight['origen']; echo htmlspecialchars($data['iataToCity'][$orig] ?? $orig); ?>"
+                        data-destination-name="<?php $dest = $flight['destino']; echo htmlspecialchars($data['iataToCity'][$dest] ?? $dest); ?>"
                         data-flight="<?php echo htmlspecialchars($flight['numeroVuelo']) ?>"
                         data-date="<?php echo $flight['fechaSalida'] ?>">
 
@@ -167,7 +170,10 @@ sort($airlines);
                         <div class="vuelo-route">
                             <div class="vuelo-point">
                                 <h3><?php echo substr($flight['horaSalida'], 0, 5) ?></h3>
-                                <p><?php echo htmlspecialchars($flight['origen']) ?></p>
+                                <p><?php
+                                $originCode = $flight['origen'];
+                                echo htmlspecialchars($data['iataToCity'][$originCode] ?? $originCode);
+                                ?></p>
                             </div>
                             <div class="vuelo-line">
                                 <div class="vuelo-line-dot"></div>
@@ -178,7 +184,10 @@ sort($airlines);
                             </div>
                             <div class="vuelo-point">
                                 <h3><?php echo substr($flight['horaLlegada'], 0, 5) ?></h3>
-                                <p><?php echo htmlspecialchars($flight['destino']) ?></p>
+                                <p><?php
+                                $destCode = $flight['destino'];
+                                echo htmlspecialchars($data['iataToCity'][$destCode] ?? $destCode);
+                                ?></p>
                             </div>
                         </div>
 
@@ -229,9 +238,12 @@ sort($airlines);
                     <?php foreach ($flightsVuelta as $flight) { ?>
                         <div class="vuelo-card" data-airline="<?php echo htmlspecialchars($flight['aerolinea']) ?>"
                             data-price="<?php echo $flight['precio'] ?>"
+                            data-price="<?php echo $flight['precio'] ?>"
                             data-duration="<?php echo $flight['duracionMinutos'] ?>"
                             data-origin="<?php echo htmlspecialchars($flight['origen']) ?>"
                             data-destination="<?php echo htmlspecialchars($flight['destino']) ?>"
+                            data-origin-name="<?php $orig = $flight['origen']; echo htmlspecialchars($data['iataToCity'][$orig] ?? $orig); ?>"
+                            data-destination-name="<?php $dest = $flight['destino']; echo htmlspecialchars($data['iataToCity'][$dest] ?? $dest); ?>"
                             data-flight="<?php echo htmlspecialchars($flight['numeroVuelo']) ?>"
                             data-date="<?php echo $flight['fechaSalida'] ?>">
 
@@ -253,7 +265,10 @@ sort($airlines);
                             <div class="vuelo-route">
                                 <div class="vuelo-point">
                                     <span class="vuelo-time"><?php echo $flight['horaSalida'] ?></span>
-                                    <p><?php echo htmlspecialchars($flight['origen']) ?></p>
+                                    <p><?php
+                                    $originCode = $flight['origen'];
+                                    echo htmlspecialchars($data['iataToCity'][$originCode] ?? $originCode);
+                                    ?></p>
                                 </div>
                                 <div class="vuelo-line">
                                     <span class="vuelo-duration"><?php echo floor($flight['duracionMinutos'] / 60) ?>h
@@ -264,7 +279,10 @@ sort($airlines);
                                 </div>
                                 <div class="vuelo-point">
                                     <span class="vuelo-time"><?php echo $flight['horaLlegada'] ?></span>
-                                    <p><?php echo htmlspecialchars($flight['destino']) ?></p>
+                                    <p><?php
+                                    $destCode = $flight['destino'];
+                                    echo htmlspecialchars($data['iataToCity'][$destCode] ?? $destCode);
+                                    ?></p>
                                 </div>
                             </div>
 
@@ -827,12 +845,14 @@ sort($airlines);
             const cardAirline = card.dataset.airline;
             const origin = card.dataset.origin.toLowerCase();
             const destination = card.dataset.destination.toLowerCase();
+            const originName = (card.dataset.originName || '').toLowerCase();
+            const destinationName = (card.dataset.destinationName || '').toLowerCase();
             const flight = card.dataset.flight.toLowerCase();
             const airlineLower = cardAirline.toLowerCase();
 
             let show = true;
 
-            if (searchTerm && !origin.includes(searchTerm) && !destination.includes(searchTerm) && !flight.includes(searchTerm) && !airlineLower.includes(searchTerm)) {
+            if (searchTerm && !origin.includes(searchTerm) && !destination.includes(searchTerm) && !originName.includes(searchTerm) && !destinationName.includes(searchTerm) && !flight.includes(searchTerm) && !airlineLower.includes(searchTerm)) {
                 show = false;
             }
 

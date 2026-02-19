@@ -155,10 +155,13 @@ span.flatpickr-weekday {
     font-weight: 700;
 }
 
-.flatpickr-day.today:hover {
-    background: #09b1be;
+background: #09b1be;
+color: white;
+border-color: #09b1be;
+}
+
+.flatpickr-day.today.selected {
     color: white;
-    border-color: #09b1be;
 }
 
 /* In range */
@@ -242,6 +245,16 @@ input.flatpickr-input.form-control.input {
     box-shadow: none !important;
     -webkit-appearance: none;
     appearance: none;
+}
+
+/* —— Disabled state for datePicker inputs —— */
+.datePicker.disabled input,
+.datePicker.disabled input.flatpickr-input,
+.datePicker.disabled input.form-control.input,
+.datePicker.disabled span input,
+.datePicker.disabled span input.flatpickr-input,
+.datePicker.disabled span input.form-control.input {
+    cursor: not-allowed !important;
 }
 
 

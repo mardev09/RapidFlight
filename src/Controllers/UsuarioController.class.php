@@ -34,7 +34,18 @@ class UsuarioController extends Controller
         }
 
         $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $userModel->addUser([$email, $hash]);
+
+        $userData = [
+            $_POST['email'],
+            $hash,
+            $_POST['nombre'],
+            $_POST['apellidos'],
+            $_POST['fechaNacimiento'],
+            $_POST['telefono'],
+            $_POST['pasaporte']
+        ];
+
+        $userModel->addUser($userData);
 
         header('Location: /login');
     }

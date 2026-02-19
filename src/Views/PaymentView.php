@@ -4,6 +4,7 @@ include(TEMPLATE_DIR . "nav.inc.php");
 
 $reserva = $data['reserva'];
 $vuelo = $data['vuelo'];
+$discounts = $data['discounts'] ?? [];
 ?>
 
 <main class="payment-page">
@@ -56,6 +57,37 @@ $vuelo = $data['vuelo'];
                         </div>
                     <?php } ?>
                 </div>
+
+                <?php if (!empty($discounts)) { ?>
+                    <div class="pago-detail-row text-center"
+                        style="align-items: center; margin-top: 1em; padding-top: 1em; border-top: 1px dashed #eee;">
+                        <span>Descuento</span>
+                        
+                        <!-- Custom Dropdown Wrapper -->
+                        <div class="custom-select-wrapper" style="position: relative; width: 60%; text-align: left;">
+                            <button type="button" class="search-select" id="discountTrigger" style="width: 100%; justify-content: space-between; padding: 0.5em 1em; background: #fafafa; border: 1px solid #e0e0e0; border-radius: 8px; display: flex; align-items: center; cursor: pointer;">
+                                <span style="display: flex; flex-direction: column; align-items: flex-start; gap: 0;">
+                                    <p style="font-size: 0.7rem; color: #09b1be; margin: 0; font-weight: bold; text-transform: uppercase;">Cupón</p>
+                                    <p class="selected-text" style="margin: 0; font-size: 0.9rem; color: #8b8b8b; font-weight: 500;">Seleccionar...</p>
+                                </span>
+                                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: #3b3b3b; transition: transform 0.2s;"></i>
+                            </button>
+                            
+                            <div class="custom-options" id="discountOptions" style="display: none; position: absolute; top: 110%; left: 0; width: 100%; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 10; overflow: hidden; border: 1px solid #f0f0f0;">
+                                <button type="button" class="discount-option" data-value="" data-percent="0" data-name="Sin descuento" style="width: 100%; text-align: left; padding: 0.8em 1em; background: white; border: none; border-bottom: 1px solid #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 200ms;">
+                                    <span style="font-weight: 500; color: #8b8b8b;">Sin descuento</span>
+                                </button>
+                                <?php foreach ($discounts as $d) { ?>
+                                    <button type="button" class="discount-option" data-value="<?php echo $d['idTransaccion'] ?>" data-percent="<?php echo $d['valor'] ?>" data-name="<?php echo htmlspecialchars($d['nombre']) ?>" style="width: 100%; text-align: left; padding: 0.8em 1em; background: white; border: none; border-bottom: 1px solid #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 200ms;">
+                                        <span style="font-weight: 600; color: #313131;"><?php echo htmlspecialchars($d['nombre']) ?></span>
+                                        <span style="background: #e8f8f9; color: #09b1be; padding: 0.2em 0.6em; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">-<?php echo $d['valor'] ?>%</span>
+                                    </button>
+                                <?php } ?>
+                            </div>
+                            <input type="hidden" name="idDescuento" id="idDescuentoInput">
+                        </div>
+                    </div>
+                <?php } ?>
 
                 <div class="pago-total">
                     <span>Total a pagar</span>
@@ -439,6 +471,73 @@ $vuelo = $data['vuelo'];
         this.value = val;
     });
 
+    // Custom Dropdown Logic
+    const trigger = document.getElementById('discountTrigger');
+    const optionsMenu = document.getElementById('discountOptions');
+    const hiddenInput = document.getElementById('idDescuentoInput');
+    const originalPrice = <?php echo json_encode((float)$reserva['precio']); ?>;
+
+    if (trigger && optionsMenu) {
+        // Toggle dropdown
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isVisible = optionsMenu.style.display === 'block';
+            optionsMenu.style.display = isVisible ? 'none' : 'block';
+            trigger.querySelector('i').style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+
+        // Close on outside click
+        window.addEventListener('click', function(e) {
+            if (!trigger.contains(e.target)) {
+                optionsMenu.style.display = 'none';
+                trigger.querySelector('i').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Option selection
+        document.querySelectorAll('.discount-option').forEach(option => {
+            option.addEventListener('mouseover', function() {
+                this.style.background = '#f5f5f5';
+            });
+            option.addEventListener('mouseout', function() {
+                this.style.background = 'white';
+            });
+
+            option.addEventListener('click', function() {
+                const val = this.dataset.value;
+                const percent = parseFloat(this.dataset.percent) || 0;
+                const name = this.dataset.name;
+                
+                // Update trigger text
+                const textEl = trigger.querySelector('.selected-text');
+                textEl.textContent = name;
+                textEl.style.color = val ? '#313131' : '#8b8b8b';
+                
+                // Update hidden input
+                hiddenInput.value = val;
+                
+                // Recalculate price
+                let finalPrice = originalPrice;
+                if (percent > 0) {
+                     finalPrice = originalPrice * (1 - percent / 100);
+                }
+                
+                // Update display
+                document.querySelector('.pago-total strong').textContent = finalPrice.toFixed(2) + ' €';
+                
+                // Update Pay Button
+                const payBtn = document.getElementById('payBtn');
+                if (payBtn && !payBtn.disabled) {
+                    payBtn.innerHTML = '<i class="fa-solid fa-shield-check"></i> Pagar ' + finalPrice.toFixed(2) + ' €';
+                }
+                
+                // Close menu
+                optionsMenu.style.display = 'none';
+                trigger.querySelector('i').style.transform = 'rotate(0deg)';
+            });
+        });
+    }
+
     // Submit
     document.getElementById('paymentForm').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -449,6 +548,10 @@ $vuelo = $data['vuelo'];
 
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
+
+        if (hiddenInput && hiddenInput.value) {
+            data.idDescuento = hiddenInput.value;
+        }
 
         fetch('/process-payment', {
             method: 'POST',

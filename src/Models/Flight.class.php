@@ -20,6 +20,7 @@ class Flight
             AND destino = ? 
             AND fechaSalida = ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY precio ASC
         ", [$origen, $destino, $fechaSalida], true, true);
     }
@@ -37,6 +38,7 @@ class Flight
         return $this->db->query("
             SELECT * FROM vuelo 
             WHERE activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY fechaSalida ASC
         ", [], true, true);
     }
@@ -47,7 +49,9 @@ class Flight
             SELECT * FROM vuelo 
             WHERE origen = ? 
             AND destino = ?
+            AND destino = ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY fechaSalida ASC
         ", [$origen, $destino], true, true);
     }
@@ -55,7 +59,7 @@ class Flight
     // Método para filtrar vuelos (se puede ampliar según necesidad)
     public function filterFlights($filters)
     {
-        $sql = "SELECT * FROM vuelo WHERE activo = 1";
+        $sql = "SELECT * FROM vuelo WHERE activo = 1 AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()";
         $params = [];
 
         if (isset($filters['min_price'])) {
@@ -92,6 +96,7 @@ class Flight
             SELECT * FROM vuelo 
             WHERE fechaSalida >= ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY fechaSalida ASC, precio ASC
         ", [$fecha], true, true);
     }
@@ -102,6 +107,7 @@ class Flight
             SELECT * FROM vuelo 
             WHERE destino = ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY fechaSalida ASC, precio ASC
         ", [$destino], true, true);
     }
@@ -112,6 +118,7 @@ class Flight
             SELECT * FROM vuelo 
             WHERE origen = ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY fechaSalida ASC, precio ASC
         ", [$origen], true, true);
     }
@@ -123,6 +130,7 @@ class Flight
             WHERE destino = ?
             AND fechaSalida = ?
             AND activo = 1
+            AND CONCAT(fechaSalida, ' ', horaSalida) >= NOW()
             ORDER BY precio ASC
         ", [$destino, $fecha], true, true);
     }

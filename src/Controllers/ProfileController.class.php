@@ -27,9 +27,12 @@ class ProfileController extends Controller
 
         $userModel = $this->model('Usuario');
 
-        // Soportar tanto JSON (modal) como POST (formulario)
+        // Detectar si es una petición JSON
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
-        if (strpos($contentType, 'application/json') !== false) {
+        $isJson = strpos($contentType, 'application/json') !== false;
+
+        $input = [];
+        if ($isJson) {
             $rawData = file_get_contents("php://input");
             $input = json_decode($rawData, true);
         } else {
@@ -45,20 +48,24 @@ class ProfileController extends Controller
             'ciudad' => $input['ciudad'] ?? '',
             'codigoPostal' => $input['codigoPostal'] ?? '',
             'pais' => $input['pais'] ?? 'España',
+            'nacionalidad' => $input['nacionalidad'] ?? 'Española',
             'pasaporte' => $input['pasaporte'] ?? ''
         ];
 
         try {
             $userModel->updateProfile($_SESSION['email'], $data);
 
-            if (strpos($contentType, 'application/json') !== false) {
+            if ($isJson) {
+                // Limpiar cualquier output previo (warnings, notices, espacios en blanco)
+                ob_clean();
                 header('Content-Type: application/json');
                 echo json_encode(['success' => true]);
                 die;
             }
             header('Location: /account');
         } catch (Exception $e) {
-            if (strpos($contentType, 'application/json') !== false) {
+            if ($isJson) {
+                ob_clean();
                 header('Content-Type: application/json');
                 echo json_encode(['success' => false, 'message' => $e->getMessage()]);
                 die;

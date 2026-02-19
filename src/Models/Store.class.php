@@ -36,4 +36,33 @@ class Store
             WHERE idProducto = ? AND stock > 0
         ", [$idProducto], false, false);
     }
+
+    public function getRedeemedProducts($usuario)
+    {
+        return $this->db->query("
+            SELECT tp.*, pt.nombre, pt.descripcion AS prodDescripcion, pt.tipo, pt.valor
+            FROM transaccion_puntos tp
+            JOIN producto_tienda pt ON tp.idProducto = pt.idProducto
+            WHERE tp.usuario = ? AND tp.tipo = 'canjeado'
+            ORDER BY tp.fecha DESC
+        ", [$usuario], true, true);
+    }
+
+    public function getAvailableDiscounts($usuario)
+    {
+        return $this->db->query("
+            SELECT tp.idTransaccion, tp.fecha, pt.nombre, pt.descripcion AS prodDescripcion, pt.tipo, pt.valor
+            FROM transaccion_puntos tp
+            JOIN producto_tienda pt ON tp.idProducto = pt.idProducto
+            WHERE tp.usuario = ? AND tp.tipo = 'canjeado' AND pt.tipo = 'descuento_vuelo' AND tp.usado = 0
+            ORDER BY tp.fecha DESC
+        ", [$usuario], true, true);
+    }
+
+    public function markDiscountUsed($idTransaccion)
+    {
+        $this->db->query("
+            UPDATE transaccion_puntos SET usado = 1 WHERE idTransaccion = ?
+        ", [$idTransaccion], false, false);
+    }
 }

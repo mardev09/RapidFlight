@@ -366,6 +366,13 @@ nav ul span {
     cursor: not-allowed;
 }
 
+.disabled span input.flatpickr-input,
+.disabled span input.form-control.input,
+.disabled input.flatpickr-input,
+.disabled input.form-control.input {
+    cursor: not-allowed !important;
+}
+
 .disabled * {
     color: #cdcdcd !important;
 }
@@ -468,9 +475,7 @@ nav ul span {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("../img/popular-destinations/madrid.jpg");
-    background-size: cover;
-    background-color: center center;
+    background-position: center center;
     position: relative;
     overflow: hidden;
     padding: 1.1em;
@@ -1012,10 +1017,11 @@ footer p {
 }
 
 .personal-info-box {
-    padding: 2em 0;
+    padding: 1em 0;
     border-bottom: 1px solid #00000021;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: #313131;
 }
 
@@ -1023,17 +1029,19 @@ footer p {
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.2em;
+    font-size: 0.9rem;
 }
 
 .personal-info-box p span {
     font-weight: normal;
     color: #5b5b5b;
+    font-size: 0.9rem;
 }
 
 .personal-info-box a {
     color: #313131;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .searcherBtnsContainer {
@@ -1406,4 +1414,283 @@ footer p {
     font-weight: bold;
     font-size: 1.2rem;
     color: #3b3b3b;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================= */
+
+@media screen and (max-width: 1024px) {
+    nav {
+        width: 90%;
+    }
+
+    .landing h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .search-searcher {
+        width: 90%;
+        height: auto;
+    }
+
+    .search-searcher-row {
+        flex-wrap: wrap;
+    }
+
+    .pop-dests {
+        width: 90%;
+    }
+
+    .pop-dests-carousel {
+        overflow-x: auto;
+    }
+
+    .why-us-head,
+    .why-us .why-us-boxes,
+    .flights-tracker h1,
+    .flights-tracker div,
+    .buy-flight-tickets h1,
+    .buy-flight-p,
+    .buy-flight-boxes {
+        width: 90%;
+    }
+
+    .why-us-boxes {
+        flex-wrap: wrap;
+    }
+
+    .why-us-box {
+        width: 48%;
+    }
+
+    .buy-flight-box {
+        width: 48%;
+    }
+
+    .account {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 2em;
+        gap: 2em;
+    }
+
+    .account-main,
+    .account-navbar {
+        width: 90%;
+        top: 0;
+    }
+
+    .login-form {
+        width: 100%;
+    }
+
+    .login-img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Navbar & Hamburger */
+    nav {
+        width: 95%;
+        padding: 0.8em;
+    }
+
+    .subnav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 5em 2em;
+        transition: left 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .subnav.active {
+        left: 0;
+    }
+
+    .subnav>img {
+        display: block;
+        width: 8em;
+        margin-bottom: 2em;
+    }
+
+    .hamMenu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #313131;
+    }
+
+    .exitHam {
+        display: block;
+        position: absolute;
+        top: 1.5em;
+        right: 1.5em;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #313131;
+    }
+
+    .subnav a {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 0;
+    }
+
+    .subnav a:hover {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+    }
+
+    .firstSep,
+    .secondSep {
+        display: none;
+    }
+
+    .navAccountWrapper {
+        width: 100%;
+    }
+
+    #showAccountSubmenu {
+        display: none;
+    }
+
+    .navAccountBox {
+        display: flex;
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        margin-top: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .navAccountBox a {
+        padding: 0.7em;
+    }
+
+    .navAccountBox span {
+        display: none;
+    }
+
+    /* Landing */
+    .landing {
+        min-height: auto;
+        padding-bottom: 3em;
+    }
+
+    .landing h1 {
+        margin-top: 6em;
+        font-size: 1.4rem;
+    }
+
+    /* Searcher */
+    .search-searcher {
+        width: 95%;
+        padding: 1em;
+    }
+
+    .search-searcher-row {
+        flex-direction: column;
+    }
+
+    .search-from-to {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .search-from-to .search-select {
+        width: 100%;
+    }
+
+    .search-from-to .changeBtn {
+        transform: rotate(90deg);
+        margin: 0;
+        align-self: center;
+    }
+
+    .searchBtn {
+        width: 100%;
+    }
+
+    .selectCity {
+        width: 90vw;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Sections */
+    .why-us-boxes {
+        flex-direction: column;
+    }
+
+    .why-us-box {
+        width: 100%;
+    }
+
+    .buy-flight-boxes {
+        flex-direction: column;
+    }
+
+    .buy-flight-box {
+        width: 100%;
+    }
+
+    /* Carousel */
+    .carousel-dest {
+        width: 85vw;
+        height: 20rem;
+    }
+
+    /* Account */
+    .account-main,
+    .account-navbar {
+        width: 95%;
+    }
+
+    /* Login/Register */
+    .login {
+        flex-direction: column;
+        height: auto;
+        padding: 4em 0;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 1em;
+    }
+
+    .login-details {
+        width: 100%;
+    }
+
+    .rpf-modal {
+        width: 95%;
+    }
+
+    .rpf-modal-row {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    /* Footer */
+    footer {
+        padding: 1em;
+        height: auto;
+    }
 }

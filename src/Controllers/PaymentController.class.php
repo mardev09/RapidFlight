@@ -68,7 +68,13 @@ class PaymentController extends Controller
             die;
         }
 
-        $this->view('PaymentView', ['reserva' => $reserva, 'vuelo' => $vuelo]);
+        // Load available discounts
+        $storeModel = $this->model('Store');
+        $discounts = $storeModel->getAvailableDiscounts($_SESSION['email']);
+        if (!is_array($discounts))
+            $discounts = [];
+
+        $this->view('PaymentView', ['reserva' => $reserva, 'vuelo' => $vuelo, 'discounts' => $discounts]);
     }
 
     /**
@@ -144,11 +150,27 @@ class PaymentController extends Controller
                 die;
             }
 
+            // Apply discount if selected
+            $montoFinal = $reserva['precio'];
+            if (isset($data['idDescuento']) && $data['idDescuento']) {
+                $storeModel = $this->model('Store');
+                $descuentos = $storeModel->getAvailableDiscounts($_SESSION['email']);
+                $descuentoValido = false;
+                foreach ($descuentos as $d) {
+                    if ($d['idTransaccion'] == $data['idDescuento']) {
+                        $montoFinal = round($reserva['precio'] * (1 - $d['valor'] / 100), 2);
+                        $storeModel->markDiscountUsed($d['idTransaccion']);
+                        $descuentoValido = true;
+                        break;
+                    }
+                }
+            }
+
             // Crear pago
             $pagoData = [
                 'idReserva' => $idReserva,
                 'usuario' => $_SESSION['email'],
-                'monto' => $reserva['precio'],
+                'monto' => $montoFinal,
                 'numeroTarjeta' => substr(str_replace(' ', '', $data['number']), -4),
                 'nombreTitular' => $data['holder'],
                 'codigoTransaccion' => $paymentModel->generateTransactionCode()

@@ -4,7 +4,12 @@ include(TEMPLATE_DIR . "nav.inc.php");
 ?>
 
 <main>
-    <section class="landing">
+    <?php
+    $destinations = isset($data['popularDestinations']) ? $data['popularDestinations'] : [];
+    $hasDestinations = !empty($destinations);
+    ?>
+    <section class="landing" <?php if (!$hasDestinations)
+        echo 'style="height: auto; min-height: 50vh;"'; ?>>
         <div class="bg-gradient"></div>
         <!-- <div id="clouds">
             <div class="cloud x1"></div>
@@ -17,30 +22,28 @@ include(TEMPLATE_DIR . "nav.inc.php");
             <h1>Bienvenido a RapidFlight: Tu portal de billetes de vuelo</h1>
             <?php include(TEMPLATE_DIR . "search.inc.php") ?>
         </div>
-        <div class="pop-dests">
-            <h2>Destinos populares para viajar en avión</h2>
-            <div class="pop-dests-carousel">
-                <?php
-                $destinations = isset($data['popularDestinations']) ? $data['popularDestinations'] : [];
-                foreach ($destinations as $dest) {
-                    ?>
-                    <div class="carousel-dest">
-                        <div class="bg-gradient-carousel"></div>
-                        <div class="carousel-header">
-                            <p>Descuentos exclusivos</p>
-                            <p><?php echo $dest['ciudad'] ?></p>
-                        </div>
+        <?php if ($hasDestinations) { ?>
+            <div class="pop-dests">
+                <h2>Destinos populares para viajar en avión</h2>
+                <div class="pop-dests-carousel">
+                    <?php foreach ($destinations as $dest) { ?>
+                        <div class="carousel-dest">
+                            <div class="bg-gradient-carousel"></div>
+                            <div class="carousel-header">
+                                <p>Descuentos exclusivos</p>
+                                <p><?php echo $dest['ciudad'] ?></p>
+                            </div>
 
-                        <span class="carousel-buy">
-                            <!-- Precio ficticio o base -->
-                            <a href="/vuelos?destino=<?php echo urlencode($dest['destino']) ?>"><button>Ver
-                                    vuelos</button></a>
-                            a <?php echo $dest['pais'] ?>
-                        </span>
-                    </div>
-                <?php } ?>
+                            <span class="carousel-buy">
+                                <a href="/vuelos?destino=<?php echo urlencode($dest['destino']) ?>"><button>Ver
+                                        vuelos</button></a>
+                                a <?php echo $dest['pais'] ?>
+                            </span>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </section>
     <section class="airlines-carousel">
         <div class="airlines">

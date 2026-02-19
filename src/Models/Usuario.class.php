@@ -13,9 +13,9 @@ class Usuario
     public function addUser($data)
     {
         $this->db->query("
-            INSERT INTO usuario(email, password)
+            INSERT INTO usuario(email, password, nombre, apellidos, fechaNacimiento, telefono, pasaporte)
             VALUES
-            (?, ?)
+            (?, ?, ?, ?, ?, ?, ?)
         ", $data, false, false);
     }
 

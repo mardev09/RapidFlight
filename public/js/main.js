@@ -13,10 +13,29 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const carousel = document.querySelectorAll('.pop-dests-carousel .carousel-dest')
 
     carousel.forEach(box => {
-        const city = box.querySelector('.carousel-header p:last-child').textContent
+        const city = box.querySelector('.carousel-header p:last-child').textContent.trim();
 
-        box.style.backgroundImage = `url('public/img/popular-destinations/${city}.jpg')`
-    })
+        if (window.rapidFlightConfig && window.rapidFlightConfig.unsplashKey && window.rapidFlightConfig.unsplashKey !== 'YOUR_UNSPLASH_ACCESS_KEY_HERE') {
+            fetch(`https://api.unsplash.com/search/photos?page=1&query=${encodeURIComponent(city + ' city')}&client_id=${window.rapidFlightConfig.unsplashKey}&orientation=landscape`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        box.style.backgroundImage = `url('${data.results[0].urls.regular}&w=1600&q=80')`;
+                    } else {
+                        // Fallback - Use a placeholder service
+                        box.style.backgroundImage = `url('https://placehold.co/600x400?text=${encodeURIComponent(city)}')`;
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching image for ' + city, err);
+                    box.style.backgroundImage = `url('https://placehold.co/600x400?text=${encodeURIComponent(city)}')`;
+                });
+        } else {
+            // Fallback if no key or default key
+            box.style.backgroundImage = `url('https://placehold.co/600x400?text=${encodeURIComponent(city)}')`;
+        }
+    });
+
 
     // Abrir cajas para cada button
     addElementWindow(container, buttons);
@@ -27,18 +46,59 @@ document.addEventListener("DOMContentLoaded", (e) => {
     searchTypeButtons.forEach(button => {
         button.addEventListener('click', e => {
             const vuelta = document.querySelector('#vuelta')
+            const vueltaInput = vuelta.querySelector('span input')
             button.classList.add('active')
 
             if (button.classList.contains('one-trip')) {
                 vuelta.disabled = true;
+                vuelta.setAttribute('data-disabled', 'true');
                 vuelta.classList.add('disabled')
-                vuelta.querySelector('span input').disabled = true
+                vueltaInput.disabled = true
+                vueltaInput.setAttribute('data-disabled', 'true');
                 isVuelta = true;
+                // Deshabilitar flatpickr específicamente para el input de vuelta
+                if (vueltaInput._flatpickr) {
+                    vueltaInput._flatpickr.close();
+                    vueltaInput._flatpickr.disable();
+                    // También deshabilitar el altInput si existe
+                    const altInput = vueltaInput._flatpickr.altInput;
+                    if (altInput) {
+                        altInput.disabled = true;
+                        altInput.readOnly = true;
+                        altInput.style.pointerEvents = 'none';
+                        altInput.style.cursor = 'not-allowed';
+                        altInput.setAttribute('data-disabled', 'true');
+                        altInput.setAttribute('tabindex', '-1');
+                        // Remover cualquier listener de flatpickr en el altInput
+                        altInput.onclick = function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        };
+                    }
+                }
             } else {
                 vuelta.disabled = false
+                vuelta.removeAttribute('data-disabled');
                 vuelta.classList.remove('disabled')
-                vuelta.querySelector('span input').disabled = false
+                vueltaInput.disabled = false
+                vueltaInput.removeAttribute('data-disabled');
                 isVuelta = false;
+                // Habilitar flatpickr cuando se vuelve a "ida y vuelta"
+                if (vueltaInput._flatpickr) {
+                    vueltaInput._flatpickr.enable();
+                    // También habilitar el altInput si existe
+                    const altInput = vueltaInput._flatpickr.altInput;
+                    if (altInput) {
+                        altInput.disabled = false;
+                        altInput.readOnly = true; // Mantener readonly porque es altInput
+                        altInput.style.pointerEvents = '';
+                        altInput.style.cursor = 'pointer';
+                        altInput.removeAttribute('data-disabled');
+                        altInput.setAttribute('tabindex', '0');
+                        altInput.onclick = null; // Restaurar comportamiento por defecto
+                    }
+                }
             }
 
             if (button.nextElementSibling) {
@@ -87,10 +147,25 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
     })
 
-    // Mostar calendario
+    // Prevenir que se abra el calendario si el botón está deshabilitado
     document.querySelectorAll('.datePicker').forEach(button => {
+        // Listener con alta prioridad para prevenir eventos en botones deshabilitados
         button.addEventListener('click', e => {
-            button.querySelector('span input').showPicker?.()
+            if (button.disabled || button.classList.contains('disabled')) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+            }
+        }, true); // Usar capture phase para ejecutarse antes que otros listeners
+
+        // Listener para mostrar calendario nativo
+        button.addEventListener('click', e => {
+            const input = button.querySelector('span input');
+            // Verificar que ni el input ni el botón estén deshabilitados
+            if (!input.disabled && !button.disabled && !button.classList.contains('disabled')) {
+                input.showPicker?.()
+            }
         })
     })
 
@@ -106,7 +181,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     // Boton para cambiar de entre destino y origen y viceversa
     const changeBtn = document?.querySelector('.changeBtn')
-        changeBtn?.addEventListener('click', e => {
+    changeBtn?.addEventListener('click', e => {
         const origen = changeBtn.previousElementSibling.querySelector('.search-select span p:last-child')
         const destino = changeBtn.nextElementSibling.querySelector('.search-select span p:last-child')
 
