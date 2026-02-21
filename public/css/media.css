@@ -2,7 +2,7 @@
     nav {
         width: 80%;
     }
-    
+
     .pop-dests {
         width: 80%;
     }
@@ -15,21 +15,29 @@
 
     .navAccountBox {
         right: 0.2em;
-    } 
+    }
 
     .pop-dests {
         width: 95%;
     }
 
-    .why-us-head, .why-us .why-us-boxes, .flights-tracker h1, .flights-tracker div, .buy-flight-tickets h1, .buy-flight-p, .buy-flight-boxes {
+    .why-us-head,
+    .why-us .why-us-boxes,
+    .flights-tracker h1,
+    .flights-tracker div,
+    .buy-flight-tickets h1,
+    .buy-flight-p,
+    .buy-flight-boxes {
         width: 80%;
     }
 
-    .flightBox h3, .myReserveBox h3 {
+    .flightBox h3,
+    .myReserveBox h3 {
         font-size: 1rem;
     }
 
-    .flightBoxLeft h3, .flightBoxRight h3 {
+    .flightBoxLeft h3,
+    .flightBoxRight h3 {
         font-size: 1.4rem;
     }
 
@@ -68,15 +76,26 @@
         backdrop-filter: blur(5px);
     }
 
-    .search, .search-searcher,.search-from-to, .searcherBtnsContainer, .datePicker  {
+    .search,
+    .search-searcher,
+    .search-from-to,
+    .searcherBtnsContainer,
+    .datePicker {
         width: 100%;
+    }
+
+    .selectCity {
+        width: 100%;
+        max-width: 95vw;
+        height: 25rem;
     }
 
     .search-select {
         justify-content: space-between;
     }
 
-    .search-from-to .search-select, .searcherBtnsContainer .search-select {
+    .search-from-to .search-select,
+    .searcherBtnsContainer .search-select {
         min-width: 100%;
     }
 
@@ -116,33 +135,24 @@
     }
 
     .subnav {
-        display: none;
-        position: absolute;
+        display: flex;
+        position: fixed;
         min-height: 100vh;
         background-color: #fffffff5;
         z-index: 100;
         backdrop-filter: blur(5px);
         width: 16em;
-        right: 0;
+        right: -16em;
+        /* Start off-screen */
         top: 0;
         flex-direction: column;
-        padding: 1.5em;
+        padding: 4em 1.5em 1.5em 1.5em;
         align-items: flex-start;
-        transition: transform 300ms ease;
+        transition: right 300ms ease;
     }
 
     .subnav.active {
-        display: flex;
-        animation: leftIntro 300ms ease-in;
-    }
-
-    @keyframes leftIntro {
-        from {
-            transform: translateX(+100%);
-        }
-        to  {
-            transform: translateX(0);
-        }
+        right: 0;
     }
 
     .subnav a[href="/routes"] {
@@ -181,7 +191,7 @@
         height: 0;
         width: 100%;
     }
-    
+
     #showAccountSubmenu {
         display: none;
     }
@@ -211,7 +221,7 @@
     .navAccountBox span {
         display: none;
     }
-    
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -251,32 +261,52 @@
         text-align: center;
     }
 
-    .why-us-head, .why-us .why-us-boxes, .flights-tracker h1, .flights-tracker div, .buy-flight-tickets h1, .buy-flight-p, .buy-flight-boxes {
+    .why-us-head,
+    .why-us .why-us-boxes,
+    .flights-tracker h1,
+    .flights-tracker div,
+    .buy-flight-tickets h1,
+    .buy-flight-p,
+    .buy-flight-boxes {
         width: 90%;
     }
 
     .account {
-        gap: 6em;
-        padding: 0 1em;
+        flex-direction: column;
+        height: auto;
+        padding: 6rem 1em 5em 1em;
+        gap: 3em;
+        min-height: calc(100vh - 4rem);
+        justify-content: flex-start;
+    }
+
+    .account-navbar {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        top: 0;
     }
 
     .account-main {
-        width:50%;
+        width: 100%;
+        top: 0;
+    }
+
+    .personal-info {
+        grid-template-columns: 1fr;
     }
 }
 
-@media screen and (max-width: 750px) {
-    .account-navbar {
-        display: none;
-    }
-
-    .account-main {
-        width: 80%;
+@media screen and (max-width: 1024px) {
+    .personal-info {
+        grid-template-columns: 1fr;
     }
 }
 
 @media screen and (max-width: 650px) {
-    .prev-btn, .next-btn {
+
+    .prev-btn,
+    .next-btn {
         display: none;
     }
 
@@ -308,11 +338,50 @@
     .buy-flight-box {
         width: 100%;
     }
-    
+
     .landing h1 {
         width: 100%;
         font-size: 1.3rem;
     }
+
+    /* Paginación Responsive */
+    .rpf-pagination {
+        gap: 0.4em;
+        margin-top: 1.5em;
+    }
+
+    .pagination-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+
+    .pagination-nav-btn {
+        padding: 0 0.8em;
+        height: 32px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pagination-nav-btn span {
+        display: none;
+    }
+
+    .pagination-nav-btn {
+        width: 32px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .pagination-nav-btn i {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+}
+
+.pagination-dots {
+    margin: 0 0.1em;
 }
 
 @media screen and (max-width: 550px) {
@@ -336,13 +405,17 @@
 
     .flightBoxLeftContent {
         gap: 0;
-    } 
+    }
 
-    .flightBox h3, .myReserveBox h3, .flightBoxLeftAdditional, .flightTime p {
+    .flightBox h3,
+    .myReserveBox h3,
+    .flightBoxLeftAdditional,
+    .flightTime p {
         font-size: 0.7rem;
     }
 
-    .flightBoxLeft h3, .flightBoxRight h3 {
+    .flightBoxLeft h3,
+    .flightBoxRight h3 {
         font-size: 0.9rem;
     }
 
@@ -354,12 +427,13 @@
     .flightBox .flightBoxPrice p {
         font-size: 0.8rem;
     }
-    
+
     .reserveButton {
         font-size: 0.8rem;
-    } 
+    }
 
-    .flightBox, .flightBoxLeftAdditional {
+    .flightBox,
+    .flightBoxLeftAdditional {
         gap: 0.5em;
     }
 }

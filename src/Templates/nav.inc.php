@@ -3,7 +3,6 @@
         <img src="public/img/logo.png" alt="">
     </a>
     <ul class="subnav">
-        <img src="public/img/logo.png" alt="">
         <button type="button" class="exitHam">
             <i class="fa-thin fa-xmark"></i>
         </button>

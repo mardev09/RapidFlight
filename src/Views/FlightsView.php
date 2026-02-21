@@ -213,6 +213,9 @@ sort($airlines);
                 <p>Prueba a cambiar los filtros de búsqueda</p>
             </div>
 
+            <!-- Pagination -->
+            <div id="flights-pagination" class="rpf-pagination"></div>
+
             <?php
             $flightsVuelta = isset($data['flightsVuelta']) ? $data['flightsVuelta'] : [];
             if (!empty($flightsVuelta)) {
@@ -234,8 +237,8 @@ sort($airlines);
                     </p>
                 </div>
 
-                <div class="vuelos-grid">
-                    <?php foreach ($flightsVuelta as $flight) { ?>
+                <div class="vuelos-grid" id="flights-vuelta-grid">
+<?php foreach ($flightsVuelta as $flight) { ?>
                         <div class="vuelo-card" data-airline="<?php echo htmlspecialchars($flight['aerolinea']) ?>"
                             data-price="<?php echo $flight['precio'] ?>"
                             data-price="<?php echo $flight['precio'] ?>"
@@ -299,6 +302,9 @@ sort($airlines);
                         </div>
                     <?php } ?>
                 </div>
+
+                <!-- Pagination Vuelta -->
+                <div id="vuelta-pagination" class="rpf-pagination"></div>
 
                 <!-- Estado vacío vuelta -->
                 <?php if (empty($flightsVuelta)) { ?>
@@ -821,18 +827,45 @@ sort($airlines);
     });
 
     // ===== FILTROS EN TIEMPO REAL =====
-    const grid = document.getElementById('flights-grid');
-    const cards = Array.from(grid.querySelectorAll('.vuelo-card'));
-    const emptyState = document.getElementById('flights-empty');
-    const countEl = document.getElementById('flights-count');
-
     const filterSearch = document.getElementById('filter-search');
     const dropdownAirline = document.getElementById('dropdown-airline');
     const dropdownPrice = document.getElementById('dropdown-price');
     const dropdownDuration = document.getElementById('dropdown-duration');
     const filterDate = document.getElementById('filter-date');
 
+    const ITEMS_PER_PAGE = 8;
+    let currentIdaPage = 1;
+    let currentVueltaPage = 1;
+
+    // Capturar las tarjetas iniciales para ida y vuelta
+    const idaGrid = document.getElementById('flights-grid');
+    const idaCards = Array.from(idaGrid.querySelectorAll('.vuelo-card'));
+    
+    const vueltaGrid = document.getElementById('flights-vuelta-grid');
+    const vueltaCards = vueltaGrid ? Array.from(vueltaGrid.querySelectorAll('.vuelo-card')) : [];
+
     function applyFilters() {
+        // Paginación para Ida
+        const idaCountEl = document.getElementById('flights-count');
+        const idaEmptyState = document.getElementById('flights-empty');
+        const idaPaginationContainer = document.getElementById('flights-pagination');
+
+        paginateGrid(idaGrid, idaCards, idaCountEl, idaEmptyState, idaPaginationContainer, currentIdaPage, (newPage) => {
+            currentIdaPage = newPage;
+            applyFilters();
+        });
+
+        // Paginación para Vuelta (si existe)
+        if (vueltaGrid) {
+            const vueltaPaginationContainer = document.getElementById('vuelta-pagination');
+            paginateGrid(vueltaGrid, vueltaCards, null, null, vueltaPaginationContainer, currentVueltaPage, (newPage) => {
+                currentVueltaPage = newPage;
+                applyFilters();
+            });
+        }
+    }
+
+    function paginateGrid(grid, allCards, countEl, emptyState, paginationContainer, currentPage, onPageChange) {
         const searchTerm = filterSearch.value.toLowerCase().trim();
         const airline = dropdownAirline.dataset.value;
         const priceSort = dropdownPrice.dataset.value;
@@ -841,7 +874,7 @@ sort($airlines);
 
         let visibleCards = [];
 
-        cards.forEach(card => {
+        allCards.forEach(card => {
             const cardAirline = card.dataset.airline;
             const origin = card.dataset.origin.toLowerCase();
             const destination = card.dataset.destination.toLowerCase();
@@ -855,17 +888,14 @@ sort($airlines);
             if (searchTerm && !origin.includes(searchTerm) && !destination.includes(searchTerm) && !originName.includes(searchTerm) && !destinationName.includes(searchTerm) && !flight.includes(searchTerm) && !airlineLower.includes(searchTerm)) {
                 show = false;
             }
+            if (airline && cardAirline !== airline) show = false;
+            if (dateFilter && card.dataset.date !== dateFilter) show = false;
 
-            if (airline && cardAirline !== airline) {
-                show = false;
+            if (!show) {
+                card.style.display = 'none';
+            } else {
+                visibleCards.push(card);
             }
-
-            if (dateFilter && card.dataset.date !== dateFilter) {
-                show = false;
-            }
-
-            card.style.display = show ? '' : 'none';
-            if (show) visibleCards.push(card);
         });
 
         // Ordenar
@@ -881,19 +911,108 @@ sort($airlines);
                 }
                 return 0;
             });
-            visibleCards.forEach(card => grid.appendChild(card));
         }
 
-        cards.forEach(card => {
-            if (card.style.display === 'none') grid.appendChild(card);
+        const totalItems = visibleCards.length;
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+        const actualPage = currentPage > totalPages ? (totalPages || 1) : currentPage;
+
+        const startIndex = (actualPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+
+        grid.innerHTML = '';
+        visibleCards.forEach((card, index) => {
+            if (index >= startIndex && index < endIndex) {
+                card.style.display = '';
+                grid.appendChild(card);
+            }
         });
 
-        countEl.textContent = visibleCards.length;
-        emptyState.style.display = visibleCards.length === 0 ? 'block' : 'none';
+        if (countEl) countEl.textContent = totalItems;
+        if (emptyState) emptyState.style.display = totalItems === 0 ? 'block' : 'none';
+
+        renderPaginationUI(paginationContainer, totalPages, actualPage, onPageChange);
     }
 
-    filterSearch.addEventListener('input', applyFilters);
-    filterDate.addEventListener('change', applyFilters);
+    function renderPaginationUI(container, totalPages, currentPage, onPageChange) {
+        container.innerHTML = '';
+        if (totalPages <= 1) return;
+
+        const delta = 2; // Número de páginas a mostrar a los lados de la actual
+        const range = [];
+        const rangeWithDots = [];
+
+        // Determinar qué números de página mostrar
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+                range.push(i);
+            }
+        }
+
+        // Añadir puntos suspensivos
+        let l;
+        for (let i of range) {
+            if (l) {
+                if (i - l === 2) {
+                    rangeWithDots.push(l + 1);
+                } else if (i - l !== 1) {
+                    rangeWithDots.push('...');
+                }
+            }
+            rangeWithDots.push(i);
+            l = i;
+        }
+
+        // Previous
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'pagination-btn pagination-nav-btn' + (currentPage === 1 ? ' disabled' : '');
+        prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i> <span>Anterior</span>';
+        prevBtn.onclick = () => {
+            if (currentPage > 1) {
+                onPageChange(currentPage - 1);
+                window.scrollTo({ top: container.closest('section').offsetTop - 100, behavior: 'smooth' });
+            }
+        };
+        container.appendChild(prevBtn);
+
+        // Pages and dots
+        rangeWithDots.forEach(item => {
+            if (item === '...') {
+                const dots = document.createElement('span');
+                dots.className = 'pagination-dots';
+                dots.textContent = '...';
+                container.appendChild(dots);
+            } else {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'pagination-btn' + (item === currentPage ? ' active' : '');
+                pageBtn.textContent = item;
+                pageBtn.onclick = () => {
+                    onPageChange(item);
+                    window.scrollTo({ top: container.closest('section').offsetTop - 100, behavior: 'smooth' });
+                };
+                container.appendChild(pageBtn);
+            }
+        });
+
+        // Next
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'pagination-btn pagination-nav-btn' + (currentPage === totalPages ? ' disabled' : '');
+        nextBtn.innerHTML = '<span>Siguiente</span> <i class="fa-solid fa-chevron-right"></i>';
+        nextBtn.onclick = () => {
+            if (currentPage < totalPages) {
+                onPageChange(currentPage + 1);
+                window.scrollTo({ top: container.closest('section').offsetTop - 100, behavior: 'smooth' });
+            }
+        };
+        container.appendChild(nextBtn);
+    }
+
+    // Event Listeners
+    filterSearch.addEventListener('input', () => { currentIdaPage = 1; currentVueltaPage = 1; applyFilters(); });
+    filterDate.addEventListener('change', () => { currentIdaPage = 1; currentVueltaPage = 1; applyFilters(); });
+    
+    // Initial call
+    applyFilters();
 
     // ===== RESERVAR =====
     document.querySelectorAll('.vuelo-reserve-btn').forEach(btn => {

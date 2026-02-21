@@ -460,11 +460,11 @@ nav ul span {
 .pop-dests .pop-dests-carousel {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: calc(100% - 30px);
     width: 100%;
     padding: 1em 0;
-    gap: 1.5em;
+    gap: 2em;
 }
 
 .pop-dests-carousel .carousel-dest {
@@ -1417,280 +1417,73 @@ footer p {
 }
 
 /* =========================================
+   PAGINATION STYLES
+   ========================================= */
+.rpf-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8em;
+    margin-top: 2.5em;
+    width: 100%;
+}
+
+.pagination-btn {
+    background-color: white;
+    color: #3b3b3b;
+    border: 1px solid #e0e0e0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 250ms ease;
+    font-size: 0.9rem;
+}
+
+.pagination-btn:hover:not(.disabled) {
+    border-color: #09b1be;
+    color: #09b1be;
+    background-color: #f0fafb;
+    transform: translateY(-2px);
+}
+
+.pagination-btn.active {
+    background-color: #09b1be;
+    color: white;
+    border-color: #09b1be;
+    box-shadow: 0 4px 12px rgba(9, 177, 190, 0.2);
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+}
+
+.pagination-nav-btn {
+    padding: 0 1em;
+    width: auto;
+    min-width: 38px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.pagination-nav-btn i {
+    font-size: 0.7rem;
+}
+
+.pagination-dots {
+    color: #b0b0b0;
+    font-weight: bold;
+}
+
+/* =========================================
    RESPONSIVE DESIGN (TABLET & MOBILE)
    ========================================= */
-
-@media screen and (max-width: 1024px) {
-    nav {
-        width: 90%;
-    }
-
-    .landing h1 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-
-    .search-searcher {
-        width: 90%;
-        height: auto;
-    }
-
-    .search-searcher-row {
-        flex-wrap: wrap;
-    }
-
-    .pop-dests {
-        width: 90%;
-    }
-
-    .pop-dests-carousel {
-        overflow-x: auto;
-    }
-
-    .why-us-head,
-    .why-us .why-us-boxes,
-    .flights-tracker h1,
-    .flights-tracker div,
-    .buy-flight-tickets h1,
-    .buy-flight-p,
-    .buy-flight-boxes {
-        width: 90%;
-    }
-
-    .why-us-boxes {
-        flex-wrap: wrap;
-    }
-
-    .why-us-box {
-        width: 48%;
-    }
-
-    .buy-flight-box {
-        width: 48%;
-    }
-
-    .account {
-        flex-direction: column;
-        height: auto;
-        padding-bottom: 2em;
-        gap: 2em;
-    }
-
-    .account-main,
-    .account-navbar {
-        width: 90%;
-        top: 0;
-    }
-
-    .login-form {
-        width: 100%;
-    }
-
-    .login-img {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 768px) {
-
-    /* Navbar & Hamburger */
-    nav {
-        width: 95%;
-        padding: 0.8em;
-    }
-
-    .subnav {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background-color: white;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 5em 2em;
-        transition: left 0.4s ease-in-out;
-        z-index: 1000;
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .subnav.active {
-        left: 0;
-    }
-
-    .subnav>img {
-        display: block;
-        width: 8em;
-        margin-bottom: 2em;
-    }
-
-    .hamMenu {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #313131;
-    }
-
-    .exitHam {
-        display: block;
-        position: absolute;
-        top: 1.5em;
-        right: 1.5em;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #313131;
-    }
-
-    .subnav a {
-        width: 100%;
-        border-bottom: 1px solid #f0f0f0;
-        border-radius: 0;
-    }
-
-    .subnav a:hover {
-        background-color: #f9f9f9;
-        border-radius: 10px;
-    }
-
-    .firstSep,
-    .secondSep {
-        display: none;
-    }
-
-    .navAccountWrapper {
-        width: 100%;
-    }
-
-    #showAccountSubmenu {
-        display: none;
-    }
-
-    .navAccountBox {
-        display: flex;
-        position: static;
-        box-shadow: none;
-        width: 100%;
-        margin-top: 0;
-        padding: 0;
-        background: transparent;
-    }
-
-    .navAccountBox a {
-        padding: 0.7em;
-    }
-
-    .navAccountBox span {
-        display: none;
-    }
-
-    /* Landing */
-    .landing {
-        min-height: auto;
-        padding-bottom: 3em;
-    }
-
-    .landing h1 {
-        margin-top: 6em;
-        font-size: 1.4rem;
-    }
-
-    /* Searcher */
-    .search-searcher {
-        width: 95%;
-        padding: 1em;
-    }
-
-    .search-searcher-row {
-        flex-direction: column;
-    }
-
-    .search-from-to {
-        flex-direction: column;
-        gap: 0.5em;
-    }
-
-    .search-from-to .search-select {
-        width: 100%;
-    }
-
-    .search-from-to .changeBtn {
-        transform: rotate(90deg);
-        margin: 0;
-        align-self: center;
-    }
-
-    .searchBtn {
-        width: 100%;
-    }
-
-    .selectCity {
-        width: 90vw;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* Sections */
-    .why-us-boxes {
-        flex-direction: column;
-    }
-
-    .why-us-box {
-        width: 100%;
-    }
-
-    .buy-flight-boxes {
-        flex-direction: column;
-    }
-
-    .buy-flight-box {
-        width: 100%;
-    }
-
-    /* Carousel */
-    .carousel-dest {
-        width: 85vw;
-        height: 20rem;
-    }
-
-    /* Account */
-    .account-main,
-    .account-navbar {
-        width: 95%;
-    }
-
-    /* Login/Register */
-    .login {
-        flex-direction: column;
-        height: auto;
-        padding: 4em 0;
-    }
-
-    .login-form {
-        width: 100%;
-        padding: 1em;
-    }
-
-    .login-details {
-        width: 100%;
-    }
-
-    .rpf-modal {
-        width: 95%;
-    }
-
-    .rpf-modal-row {
-        flex-direction: column;
-        gap: 0.5em;
-    }
-
-    /* Footer */
-    footer {
-        padding: 1em;
-        height: auto;
-    }
-}

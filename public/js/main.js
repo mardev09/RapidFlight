@@ -45,9 +45,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     searchTypeButtons.forEach(button => {
         button.addEventListener('click', e => {
-            const vuelta = document.querySelector('#vuelta')
-            const vueltaInput = vuelta.querySelector('span input')
-            button.classList.add('active')
+            const container = button.closest('.search-type');
+            if (container) {
+                container.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            }
+            button.classList.add('active');
+
+            const vuelta = document.querySelector('#vuelta');
+            const vueltaInput = vuelta?.querySelector('span input');
+            
+            if (!vuelta || !vueltaInput) return;
 
             if (button.classList.contains('one-trip')) {
                 vuelta.disabled = true;
@@ -99,12 +106,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         altInput.onclick = null; // Restaurar comportamiento por defecto
                     }
                 }
-            }
-
-            if (button.nextElementSibling) {
-                button.nextElementSibling.classList.remove('active')
-            } else {
-                button.previousElementSibling.classList.remove('active')
             }
         })
     })

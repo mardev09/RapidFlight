@@ -169,7 +169,118 @@ $reserves = is_array($data) ? $data : [];
                         </div>
                     <?php } ?>
                 </div>
+
+                <!-- Pagination -->
+                <div id="reserves-pagination" class="rpf-pagination"></div>
             <?php } ?>
+
+                <script>
+                    (function() {
+                        const ticketsList = document.querySelector('.tickets-list');
+                        if (!ticketsList) return;
+
+                        const tickets = Array.from(ticketsList.querySelectorAll('.ticket'));
+                        const ITEMS_PER_PAGE = 5;
+                        let currentPage = 1;
+
+                        function applyPagination() {
+                            const totalItems = tickets.length;
+                            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+                            if (currentPage > totalPages) currentPage = totalPages || 1;
+
+                            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+                            const endIndex = startIndex + ITEMS_PER_PAGE;
+
+                            ticketsList.innerHTML = '';
+                            tickets.forEach((ticket, index) => {
+                                if (index >= startIndex && index < endIndex) {
+                                    ticketsList.appendChild(ticket);
+                                }
+                            });
+
+                            renderPagination(totalPages);
+                        }
+
+                        function renderPagination(totalPages) {
+                            const container = document.getElementById('reserves-pagination');
+                            container.innerHTML = '';
+
+                            if (totalPages <= 1) return;
+
+                            const delta = 2;
+                            const range = [];
+                            const rangeWithDots = [];
+
+                            for (let i = 1; i <= totalPages; i++) {
+                                if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+                                    range.push(i);
+                                }
+                            }
+
+                            let l;
+                            for (let i of range) {
+                                if (l) {
+                                    if (i - l === 2) {
+                                        rangeWithDots.push(l + 1);
+                                    } else if (i - l !== 1) {
+                                        rangeWithDots.push('...');
+                                    }
+                                }
+                                rangeWithDots.push(i);
+                                l = i;
+                            }
+
+                            // Previous button
+                            const prevBtn = document.createElement('button');
+                            prevBtn.className = 'pagination-btn pagination-nav-btn' + (currentPage === 1 ? ' disabled' : '');
+                            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i> <span>Anterior</span>';
+                            prevBtn.onclick = () => {
+                                if (currentPage > 1) {
+                                    currentPage--;
+                                    applyPagination();
+                                    window.scrollTo({ top: document.querySelector('.reserves-section').offsetTop - 100, behavior: 'smooth' });
+                                }
+                            };
+                            container.appendChild(prevBtn);
+
+                            // Page numbers and dots
+                            rangeWithDots.forEach(item => {
+                                if (item === '...') {
+                                    const dots = document.createElement('span');
+                                    dots.className = 'pagination-dots';
+                                    dots.textContent = '...';
+                                    container.appendChild(dots);
+                                } else {
+                                    const pageBtn = document.createElement('button');
+                                    pageBtn.className = 'pagination-btn' + (item === currentPage ? ' active' : '');
+                                    pageBtn.textContent = item;
+                                    pageBtn.onclick = () => {
+                                        currentPage = item;
+                                        applyPagination();
+                                        window.scrollTo({ top: document.querySelector('.reserves-section').offsetTop - 100, behavior: 'smooth' });
+                                    };
+                                    container.appendChild(pageBtn);
+                                }
+                            });
+
+                            // Next button
+                            const nextBtn = document.createElement('button');
+                            nextBtn.className = 'pagination-btn pagination-nav-btn' + (currentPage === totalPages ? ' disabled' : '');
+                            nextBtn.innerHTML = '<span>Siguiente</span> <i class="fa-solid fa-chevron-right"></i>';
+                            nextBtn.onclick = () => {
+                                if (currentPage < totalPages) {
+                                    currentPage++;
+                                    applyPagination();
+                                    window.scrollTo({ top: document.querySelector('.reserves-section').offsetTop - 100, behavior: 'smooth' });
+                                }
+                            };
+                            container.appendChild(nextBtn);
+                        }
+
+                        applyPagination();
+                    })();
+                </script>
         </div>
     </section>
 </main>
